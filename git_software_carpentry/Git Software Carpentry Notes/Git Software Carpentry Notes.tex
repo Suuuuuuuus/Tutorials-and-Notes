@@ -1,0 +1,471 @@
+\documentclass[UTF8]{book}
+\usepackage{ctex}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{makeidx}
+\usepackage{enumitem}
+\usepackage{rotating} 
+\usepackage{yhmath}
+\usepackage{textcomp,booktabs}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{colortbl}
+\usepackage{makecell}
+\usepackage{gensymb}
+\usepackage{cancel}
+\usepackage{graphicx}
+\usepackage{pifont}
+\usepackage[all,pdf]{xy}
+\usepackage{exscale}
+\usepackage{blindtext}
+\usepackage{hyperref}
+\hypersetup{
+colorlinks=true,
+linkcolor=black
+}
+\usepackage{nameref}
+\usepackage{relsize}
+\usepackage{titlesec}
+\usepackage{ifthen}
+\usepackage{array}
+\usepackage[flushleft]{threeparttable}
+\usepackage{diagbox}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{bbm}
+\usepackage{ulem}
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{mathptmx}
+\usepackage{amssymb}
+\usepackage{geometry}
+\geometry{a4paper, left=2.54cm,right=2.54cm,top=2.54cm,bottom=2.54cm}
+%\geometry{b5paper, left=1.6cm,right=2cm,top=2cm,bottom=2cm}
+\usepackage{mathrsfs}
+\usepackage{tikz,tkz-euclide}
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shapes,arrows}
+\usepackage{esvect}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{} % clear all fields 
+\cfoot{}
+\fancyhead[LE,RO]{\thepage} 
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\linespread{1.4}
+\date{}
+\graphicspath{ {../Graphs} }
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  frame=single,
+  breaklines=true,
+  backgroundcolor=\color{gray!20!white}
+}
+\definecolor{codegray}{gray}{0.8}
+\newcommand{\code}[1]{\colorbox{codegray}{\texttt{#1}}}
+%通用：
+\newcounter{mylabelcounter}
+\makeatletter
+\newcommand{\labeltext}[2]{%
+#1\refstepcounter{mylabelcounter}%
+\immediate\write\@auxout{%
+  \string\newlabel{#2}{{1}{\thepage}{{\unexpanded{#1}}}{mylabelcounter.\number\value{mylabelcounter}}{}}%
+}%
+}
+%Xsum
+\DeclareFontFamily{U} {cmex}{}
+\DeclareFontShape{U}{cmex}{m}{n}{
+  <-6> cmex5
+  <6-7> cmex6
+  <7-8> cmex7
+  <8-9> cmex8
+  <9-10> cmex9
+  <10-12> cmex10
+  <12-> cmex12}{}
+\DeclareSymbolFont{Xcmex} {U} {cmex}{m}{n}
+\DeclareMathSymbol{\Xdsum}{\mathop}{Xcmex}{88}
+\DeclareMathSymbol{\Xtsum}{\mathop}{Xcmex}{80}
+\DeclareMathOperator*{\Xsum}{\mathchoice{\Xdsum}{\Xtsum}{\Xtsum}{\Xtsum}}
+%Xsum
+%choice
+\newcommand{\fourch}[4]{%~\hfill(\qquad)\\
+\begin{tabular}{*{4}{@{}p{0.25\textwidth}}}(A)~#1 & (B)~#2 & (C)~#3 & (D)~#4\end{tabular}}
+\newcommand{\twoch}[4]{%~\hfill(\qquad)\\
+\begin{tabular}{*{2}{@{}p{0.5\textwidth}}}(A)~#1 & (B)~#2\end{tabular}\\\begin{tabular}{*{2}{@{}p{0.5\textwidth}}}(C)~#3 & (D)~#4\end{tabular}}
+\newcommand{\onech}[4]{%~\hfill(\qquad)\\
+(A)~#1 \\ (B)~#2 \\ (C)~#3 \\ (D)~#4}
+ 
+\newlength\widthcha
+\newlength\widthchb
+\newlength\widthchc
+\newlength\widthchd
+\newlength\widthch
+\newlength\tabmaxwidth
+\setlength\tabmaxwidth{1\textwidth}
+\newlength\fourthtabwidth
+\setlength\fourthtabwidth{0.25\textwidth}
+\newlength\halftabwidth
+\setlength\halftabwidth{0.5\textwidth}
+\newcommand{\choice}[4]{\settowidth\widthcha{AM.#1}\setlength{\widthch}{\widthcha}
+    \settowidth\widthchb{BM.#2}
+    \ifthenelse{\widthch<\widthchb}{\setlength{\widthch}{\widthchb}}{}
+    \settowidth\widthchb{CM.#3}
+    \ifthenelse{\widthch<\widthchb}{\setlength{\widthch}{\widthchb}}{}
+    \settowidth\widthchb{DM.#4}
+    \ifthenelse{\widthch<\widthchb}{\setlength{\widthch}{\widthchb}}{}
+    \ifthenelse{\widthch<\fourthtabwidth}{\fourch{#1}{#2}{#3}{#4}}
+    {\ifthenelse{\widthch<\halftabwidth\and\widthch>\fourthtabwidth}{\twoch{#1}{#2}{#3}{#4}}
+        {\onech{#1}{#2}{#3}{#4}}}}
+%choice
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+
+% Custom colors
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+\usepackage{listings}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+morekeywords={self},              % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=single,                         % Any extra options here
+showstringspaces=false
+}}
+
+
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\pythonexternal[2][]{{
+\pythonstyle
+\lstinputlisting[#1]{#2}}}
+
+% Python for inline
+\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+%%%%%
+% Bash style for highlighting
+\newcommand\bashstyle{\lstset{
+language=bash,
+basicstyle=\ttm\normalsize,
+tabsize=4,
+morekeywords={self, head, tail, uniq, sort, grep, cat, cut, echo, wc, cp, rm, mkdir, cd, nano, man, ls, history, bash, rmdir, find, plink, bcftools, bedtools, octopus},              % Add keywords here
+keywordstyle=\color{deepblue}\normalsize\bfseries,
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=single,                         % Any extra options here
+showstringspaces=false
+}}
+
+
+% Python environment
+\lstnewenvironment{bash}[1][]
+{
+\bashstyle
+\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\bashexternal[2][]{{
+\bashstyle
+\lstinputlisting[#1]{#2}}}
+
+% Python for inline
+\newcommand\bashinline[1]{{\bashstyle\lstinline!#1!}}
+%%%%%
+\newcommand{\dollar}{\mbox{\textdollar}}
+\newcommand{\dps}[1]{\ensuremath{\displaystyle{#1}}}
+\newcommand\ffrac[2]{\ensuremath{\dfrac{\;#1\;}{\;#2\;}}}
+\newcommand{\comma}{\, \; \;\mathclap{\text{，}}} %用于mathmode中的逗号
+\newcommand{\semicolon}{\, \; \;\mathclap{\text{；}}} %用于mathmode中的分号
+\newcommand{\pl}{\phantom{l}} %用来占位
+\newcommand{\un}{\ding{172}}
+\newcommand{\deux}{\ding{173}}
+\newcommand{\trois}{\ding{174}}
+\newcommand{\quatre}{\ding{175}}
+\newcommand{\et}{&}
+\newcommand{\f}{^2}
+\newcommand{\xz}{(\qquad)}
+\newcommand{\tk}{\underline{\qquad\qquad}}
+%高等数学：
+\renewcommand{\d}{\,\mathrm{d}}
+\newcommand{\dt}{\,\mathrm{d}t}
+\newcommand{\dr}{\,\mathrm{d}r}
+\newcommand{\du}{\,\mathrm{d}u}
+\newcommand{\dv}{\,\mathrm{d}v}
+\newcommand{\dx}{\,\mathrm{d}x}
+\newcommand{\dy}{\,\mathrm{d}y}
+\newcommand{\dz}{\,\mathrm{d}z}
+\newcommand{\df}{\,\mathrm{d}f}
+\newcommand{\bigmid}{\, \bigg | \,} %用于集合中有分数的情况
+\newcommand\matharr{\tikz[baseline=-0.4ex]\draw[-stealth] (0,0) -- + (3mm,0);} %用于下标中的右箭头
+\newcommand\textarr{\; \tikz[baseline=-0.55ex]\draw[-stealth] (0,0) -- + (4mm,0);} %用于文本中的右箭头，注意用占位符调整前后间距
+\newcommand{\limite}[2]{\ensuremath{\lim\limits_{#1\matharr #2}}} %#1趋向于#2
+\newcommand{\dlimite}[4]{\ensuremath{\displaystyle{\lim_{\substack{ \phantom{l}#1\matharr #2\phantom{l} \\ #3\matharr #4}}}}} %#重极限：1趋向于#2，#3趋向于#4，phantom{l}用来占位
+\newcommand{\neighbr}{\ensuremath{\mathring{U}(x_0\comma \delta)}} %去心邻域U
+\newcommand{\neighbor}{\ensuremath{U(x_0\comma \delta)}} %邻域U
+\newcommand{\tikzrm}[1]{
+	\fill[white] #1 circle(1.5pt);
+	\draw #1 circle(1.5pt);
+}
+\newcommand{\derivee}[4]{
+	\ffrac{\,\mathrm{d}^{#1}#2}{\,\mathrm{d}#3^{#4}}
+}
+\newcommand{\intscript}[2]{\biggl.\biggr|_{\, #2}^{\, #1}} %求出原函数以后代入的积分上下限
+\newcommand{\dint}[2]{\ensuremath{\displaystyle{\int_{#2}^{#1}}}}
+\newcommand{\diint}[4]{\ensuremath{\displaystyle{\int_{#2}^{#1}\int_{#4}^{#3}}}}
+\newcommand{\bint}{\mathlarger{\int}} %用于将幂次上的积分号放大
+\newcommand{\exiint}{\ensuremath{\!\!\!}} %用于缩短累次积分中积分号的距离
+\newcommand{\fxy}{\ensuremath{f(x\comma y)}}
+\newcommand{\xoyo}{\ensuremath{(x_0\comma y_0)}}
+\newcommand{\series}{\ensuremath{\dps{\Xsum_{n=1}^\infty}}} %级数
+\newcommand{\serieso}{\ensuremath{\dps{\Xsum_{n=0}^\infty}}} %0开始的级数
+%线性代数：
+\newcommand{\pA}{\ensuremath{\pmb{A}}}
+\newcommand{\pB}{\ensuremath{\pmb{B}}}
+\newcommand{\pC}{\ensuremath{\pmb{C}}}
+\newcommand{\pO}{\ensuremath{\pmb{O}}}
+\newcommand{\pP}{\ensuremath{\pmb{P}}}
+\newcommand{\pQ}{\ensuremath{\pmb{Q}}}
+\newcommand{\pE}{\ensuremath{\pmb{E}}}
+\newcommand{\px}{\ensuremath{\pmb{x}}}
+\newcommand{\pX}{\ensuremath{\pmb{X}}}
+\newcommand{\pR}{\ensuremath{\pmb{R}}}
+\newcommand{\pZ}{\ensuremath{\pmb{Z}}}
+\newcommand{\pal}{\ensuremath{\pmb{\alpha}}}
+\newcommand{\pbe}{\ensuremath{\pmb{\beta}}}
+\newcommand{\pxi}{\ensuremath{\pmb{\xi}}}
+\newcommand{\pet}{\ensuremath{\pmb{\eta}}}
+\renewcommand{\t}{\ensuremath{^\mathrm{T}}}
+\newcommand\laarr{\qquad\tikz\draw[-stealth] (0,0) -- + (7mm,0);\qquad} %用于矩阵中的初等变换
+\newcommand{\laarrt}[1]{\qquad\tikz\draw[-stealth] (0,0) -- (4mm,0) node[above]{#1}--+ (4mm,0);\qquad} %初等变换上带字
+%概率：
+\newcommand{\XY}{\ensuremath{(X\comma Y)}}
+\newcommand{\Cov}{\ensuremath{\mathrm{Cov}}}
+\newcommand{\cip}{\tikz[baseline=-0.55ex]\draw[-stealth] (0,0) -- (2mm,0) node[above]{$\;\;P$}--+ (4mm,0);\;} %依概率收敛
+\newcommand{\seriesn}{\ensuremath{\dps{\Xsum_{i=1}^n}}} %1开始到n的连续求和
+\begin{document}
+\kaishu
+\begin{center}
+\Large{Git Software Carpentry Notes}
+\end{center}
+\begin{itemize}
+\item Setting up Git:
+\begin{bash}
+git config --global user.name "Suuuuuuuus"
+git config --global user.email "bjzzp01@163.com"
+git config --global core.autocrlf false
+git config --global core.editor "code --wait"
+git config --global init.defaultBranch main
+\end{bash}
+One can check settings by
+\begin{bash}
+git config --list
+\end{bash}
+\item Create a repository:
+\begin{bash}
+git init
+\end{bash}
+Change the default branch to be called \code{main}:
+\begin{bash}
+git checkout -b main
+\end{bash}
+Use the following code to show the status of our project:
+\begin{bash}
+git status
+\end{bash}
+\item To tell Git to track a file:
+\begin{bash}
+git add mars.txt
+\end{bash}
+as if telling Git to gather stuff before a commit. It is meaningless to \code{add} an empty directory to Git, but if there are uncommited files in the directory, one can \code{add} them all\footnote{One can also use \code{git add -A} or \code{git add .} to add all files in the repository.} by
+\begin{bash}
+git add spaceships/
+\end{bash}
+After that, we can let Git commit:
+\begin{bash}
+git commit -m "Notes"
+\end{bash}
+with some notes. Without the \code{-m} command, Git will launch some text editor to allow us to write a longer message. This commands is as if taking a snapshot for all stuff that has been \code{add} by Git. Alternatively, one may run
+\begin{bash}
+git commit -a
+\end{bash}
+yet it's not recommended. List all commits made to a repository in reverse chronological order:
+\begin{bash}
+git log
+\end{bash}
+\begin{itemize}
+	\item Note that if the \code{log} is too long, Git might switch to a pager program where one can play with like a manual. To limit the number of commits one makes, simply use
+\begin{bash}
+git log -1
+\end{bash}
+	\item Reduce the quantity of information using
+\begin{bash}
+git log --oneline
+\end{bash}
+	\item To display the commit history as a text-based graph:
+\begin{bash}
+git log --graph
+\end{bash}
+	\item One can combine \code{diff} and \code{log} by
+\begin{bash}
+git log --patch mars.txt
+\end{bash}
+It is also possible to specify a specific commit by \code{HEAD~3}.
+\end{itemize}
+\item Review our changes from the last commit:
+\begin{bash}
+git diff
+\end{bash}
+\begin{itemize}
+	\item One can check if there is any difference between the previous commit and stuff in the staging area:
+\begin{bash}
+git diff --staged
+\end{bash}
+	\item One can review differences between the current file and previous commits by
+\begin{bash}
+git diff HEAD~3 mars.txt
+\end{bash}
+where \code{\~3} refers to the third-to-last commit.
+	\item One can also specify the ID associated with each commit by \code{6c498cdd333403404ad483dd94330b7a0d641999} or \code{6c498cd}:
+\begin{bash}
+git diff 6c498cd mars.txt
+\end{bash}
+\end{itemize}
+\item To show what changes we made at an older commit as well as the commit message, we use:
+\begin{bash}
+git show HEAD~3 mars.txt
+\end{bash}
+\item The \code{checkout} command allows us to go back to previous commits:
+\begin{itemize}
+	\item One can go back by one step via:
+\begin{bash}	
+git checkout HEAD mars.txt
+\end{bash}
+	\item To go back further:
+\begin{bash}
+git checkout 6c498cd mars.txt
+\end{bash}
+	\item If one forgets to put the target file behind \code{checkout}, it might find itself in the "detached HEAD" state. This can be reverted by
+\begin{bash}
+git checkout main
+\end{bash}
+	\item Note that \code{git checkout} can also be used to get rid of the staged but not yet committed changes.
+\end{itemize}
+\item We can keep track of files that we want Git to ignore by creating a file called \code{.gitignore} and put all filenames in. We still need to \code{add} and \code{commit} this file. Note that if any of the files in there were already being tracked, Git would continue to track them.
+\begin{itemize}
+	\item If one accidentally adds one of the ignored file
+\begin{bash}
+git add a.dat
+\end{bash}
+An error message will pop up. However, one can still add it by
+\begin{bash}
+git add -f a.dat
+\end{bash}
+	\item We can also always see the status of ignored files if we want:
+\begin{bash}
+git status  --ignored
+\end{bash}
+	\item We can use the \code{!} exclamation point operator to except a file from \code{.gitignore}:
+\begin{bash}
+!final.dat #except final.data
+\end{bash}
+	\item One can ignore all \code{.dat} files, no matter which subdirectories they are in by putting the following command in \code{.gitignore}:
+\begin{bash}
+**/*.dat
+\end{bash}
+\end{itemize}
+\item To connect the local and the remote repository, first we need to create a repository on GitHub that has exactly the same name as our local ones. We then copy the SSH link and type:
+\begin{bash}
+git remote add origin git@github.com:Suuuuuuuus/planets.git
+\end{bash}
+locally. Whether this is properly done can be checked by:
+\begin{bash}
+git remote -v
+\end{bash}
+Then, we need to setup SSH on our local PC. Simply follow instructions on this website\footnote{\url{https://swcarpentry.github.io/git-novice/07-github/index.html}.}. Stuff below is only for record purpose:
+\begin{bash}
+ssh-keygen -t ed25519 -C "bjzzp01@163.com"
+Enter
+kotori0803
+kotori0803
+ssh -T git@github.com
+cat ~/.ssh/id_ed25519.pub
+\end{bash}
+Then, we paste the key into GitHub.
+\item To push the changes from our local repository to the repository on GitHub:
+\begin{bash}
+git push origin main
+\end{bash}
+\item To pull the changes from GitHub to our local repository:
+\begin{bash}
+git pull origin main
+\end{bash}
+One can force two repositories to merge with \code{--allow-unrelated-histories}.
+\item If one has accidentally deleted some files, one may use
+\begin{bash}
+git ls-files --deleted
+\end{bash}
+to show all deleted files, and then
+\begin{bash}
+git checkout .
+\end{bash}
+to retain the target files. Alternatively, it's possible to reset the local branch to what's at remote:
+\begin{bash}
+git reset --hard origin/main
+\end{bash}
+\item The \code{git remote} family of commands is used to set up and alter the remotes associated with a repository\footnote{A \textcolor{magenta}{remote} is a copy of the repository that is hosted somewhere else, that we can push to and pull from.}.
+\begin{itemize}
+	\item \code{git remote -v} lists all the remotes that are configured.
+	\item \code{git remote add [name] [url]} is used to add a new remote.
+	\item \code{git remote remove [name]} removes a remote. Note that it doesn't affect the remote repository at all - it just removes the link to it from the local repo.
+	\item \code{git remote set-url [name] [newurl]} changes the URL that is associated with the remote.
+	\item \code{git remote rename [oldname] [newname]} changes the local alias by which a remote is known.
+\end{itemize}
+\item To get the remote changes into the local repository but without merging them, one can run
+\begin{bash}
+git fetch origin main
+\end{bash}
+Then by running
+\begin{bash}
+git diff main origin/main
+\end{bash}
+one can see the changes output in the terminal.
+\item Miscellaneous:
+\begin{itemize}
+\item Use the command
+\begin{bash}
+git rebase --abort
+\end{bash}
+to recover the lost files\footnote{I have no idea what happened before but I accidentally lost many files (quite randomly). After running this command I have everything back.}.
+\item Here is a link\footnote{\url{https://swcarpentry.github.io/git-novice/14-supplemental-rstudio/index.html}.} for using Git in RStudio.
+\item When trying to upload files larger than 100MB, one can refer to this link\footnote{\url{https://blog.csdn.net/qq\_42196916/article/details/105812410?utm\_medium=distribute.pc\_relevant.none-task-blog-2~default~baidujs\_baidulandingword~default-5-105812410-blog-105779097.pc\_relevant\_aa2&spm=1001.2101.3001.4242.4&utm\_relevant\_index=8}.} for solution.
+\end{itemize}
+\end{itemize}
+\end{document}
