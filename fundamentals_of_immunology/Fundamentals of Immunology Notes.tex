@@ -1,5 +1,5 @@
 \documentclass[UTF8]{book}
-\usepackage{ctex}
+%\usepackage{ctex}
 \usepackage{amsmath}
 \usepackage{bm}
 \usepackage{makeidx}
@@ -273,7 +273,7 @@ showstringspaces=false
 \newcommand{\cip}{\tikz[baseline=-0.55ex]\draw[-stealth] (0,0) -- (2mm,0) node[above]{$\;\;P$}--+ (4mm,0);\;} %依概率收敛
 \newcommand{\seriesn}{\ensuremath{\dps{\Xsum_{i=1}^n}}} %1开始到n的连续求和
 \begin{document}
-\kaishu
+%\kaishu
 \begin{center}
 \Large{Fundamentals of Immunology Notes}
 \end{center}
@@ -297,12 +297,12 @@ showstringspaces=false
 \item Properties of Innate vs Adaptive Defenses:
 \begin{center}
 \begin{tabular}{|m{1.5cm}<{\centering}|m{3cm}<{\centering}|m{2cm}<{\centering}|m{3cm}<{\centering}|m{2cm}<{\centering}|} \Xhline{1.2pt}
-Innate \et Fast:Minutes after exposure \et Always there \et Recognizes patterns: types of molecules that a pathogen might have and you would not have \et Neutrophils, macrophages, NK cells, proteins, barriers \\ \hline
+Innate \et Fast: Minutes after exposure \et Always there \et Recognizes patterns: types of molecules that a pathogen might have and you would not have \et Neutrophils, macrophages, NK cells, proteins, barriers \\ \hline
 Adaptive \et Slower: approximately two weeks after first exposure and three days after subsequent exposure \et requires gene rearrangement \et recognizes specific parts of proteins characteristic of a pathogen \et B cells, antibodies, T$_\mathrm{C}$ cells, T$_\mathrm{H}$ cells.\\ \Xhline{1.2pt}
 \end{tabular}
 \end{center}
 \end{itemize}
-1.7\quad Innate vs Defensive Responses
+1.7\quad \textbf{Innate vs Defensive Responses}
 \begin{itemize}
 \item Responding to foreign antigen:
 \begin{center}
@@ -318,7 +318,7 @@ Antigen hydrolyzed in \et phagolysosome \et proteosome\\ \Xhline{1.2pt}
 \end{tabular}
 \end{center}
 \end{itemize}
-2.1\quad Terminology
+2.1\quad \textbf{Terminology}
 \begin{itemize}
 \item The \concept{primary organs} are where the genes rearrange to make various recognition molecules. They include:
 \begin{itemize}
@@ -339,7 +339,7 @@ Antigen hydrolyzed in \et phagolysosome \et proteosome\\ \Xhline{1.2pt}
 \end{itemize}
 \item \concept{Cluster of Differentiation (CD)} refers to how cells come out of various separation procedures that involve cytometry. Hence, CDx cells are only informative in the chronological order they were discovered.
 \end{itemize}
-2.2\quad Hematopoiesis
+2.2\quad \textbf{Hematopoiesis}
 \begin{itemize}
 \item \concept{Pluripotent stem cell} has many possible developmental phase.
 \item Different blood cells:
@@ -366,5 +366,160 @@ Antigen hydrolyzed in \et phagolysosome \et proteosome\\ \Xhline{1.2pt}
 \begin{center}
 \includegraphics[scale=0.5]{2.2.1.png}
 \end{center}
+\end{itemize}
+2.3\quad \textbf{Myeloid Granulocytes}
+\begin{itemize}
+\item \concept{Granulocytes} have granules and funky-looking nuclei.
+\begin{itemize}
+	\item \concept{Neutrophil}:
+	\begin{itemize}
+		\item Initial response to a threat.
+		\item Strongly phagocytic, typically only lives for a day.	
+		\item Multi-lobe nucleus.
+		\item Granules are both acidic and basic.
+		\item Has FC receptors that binds the antibody stems and targets threats.
+	\end{itemize}
+	\item \concept{Basophil}:
+	\begin{itemize}
+		\item Complex C-shaped nucleus.
+		\item Not phagocytic.
+		\item Part of the response to worms and environmental threats.
+		\item Granules have C-shaped nucleus.
+		\item Has FC receptors that hold E-class antibodies and go looking for antigen.
+	\end{itemize}
+	\item \concept{Mass cell}:
+	\begin{itemize}
+		\item Tends to stay at one location.
+		\item Has lots of granules with histamine.
+		\item Signals running nose, mucus production, and itching if has an allergic response.
+		\item Nucleus has no lobes.
+		\item Works with basophils to respond to worms and environmental pollutants.
+		\item Has FC receptors that hold E-class antibodies and go looking for antigen.
+	\end{itemize}
+	\item \concept{Eosinophil}:
+	\begin{itemize}
+		\item Has a bilobed nucleus.
+		\item Granules are red as they are staining with eosin red and acidic stain.
+		\item Also attacks worms.
+		\item Weakly phagocytic, most of the time secretes substances from those red staining granules at the warms.
+	\end{itemize}
+\end{itemize}
+\item \concept{Hygiene hypothesis} states that early childhood exposure to particular microorganisms protects against allergic diseases by contributing to the development of the immune system.
+\end{itemize}
+2.4\quad \textbf{Myeloid Antigen Presenting Cells}
+\begin{itemize}
+\item Myeloid antigen presenting cells:
+\begin{itemize}
+	\item \concept{Monocyte}:
+	\begin{itemize}
+		\item Makes lot of inclusions and other molecules important in hydrolyzing pathogens, breaking them up, and using them to alert $\mathrm{T_H}$ cells.
+		\item Not only phagocitize but also reach out and attempt to transmit information or grab pathogens.
+		\item Mobile and has active surface, strongly phagocytic.
+	\end{itemize}
+	\item \concept{Sentinel Dendritic Cell}:
+	\begin{itemize}
+		\item First to present an antigen to naive $\mathrm{T_H}$ cells.
+		\item Gatekeepers that decide whether or not a $\mathrm{T_H}$ cell will respond to a new antigen.
+		\item Not migrating but lying in wait in a tissue to phagocytize antigen, digest it, and then present it to a $\mathrm{T_H}$ cell.
+		\item Some belong to the lymphoid lineage.
+	\end{itemize}
+	\item \concept{Follicular dendritic cell}:
+	\begin{itemize}
+		\item Incredible number of extensions that can trap \concept{exosomes}, including particles and antigen-antibody complexes.
+		\item Instructs B cells by giving them a chance to bind to a particular antigen-antibody complex and thus get some encouragement in their development.
+	\end{itemize}
+\end{itemize}
+\end{itemize}
+2.5\quad \textbf{Lymphocytes}
+\begin{itemize}
+\item B cells:
+\begin{itemize}
+	\item Developped in the bursa of Fabricius, which is the dorsal wall of the cloaca (common exit) of both the digestive and urogenital system of the bird. 
+	\item Has membrane-bound antibody.
+	\item Has class II MHC molecules, part of its their way of communicating with $\mathrm{T_H}$ cells.
+	\item When stimulated to divide and develop and secrete antibodies, it becomes much larger and its protein synthesis apparatus will be up-regulated. 
+\end{itemize}
+\item T cells:
+\begin{itemize}
+	\item Either becomes \concept{cytotoxic} ($\mathrm{T_C}$) cell or \concept{helper} ($\mathrm{T_H}$) cell. $\mathrm{T_C}$ has CD8 and $\mathrm{T_H}$ has CD4. 
+	\item $\mathrm{T_H}$ cells are quite diverse, including $\mathrm{T_H}1$, $\mathrm{T_H}2$, $\mathrm{T_{reg}}$, $\mathrm{T_H}17$, etc.
+\end{itemize}
+\item NK cells:
+\begin{itemize}
+	\item Many granules and a round nucleus.
+	\item Has a trident of Fas ligand (FASL) that up-regulate apoptosis of the cell it sticks into.
+	\item If it synapses with a rogue cell or viral-infected or cancerous cell, it has a lot of ammunition in the form of granzymes (serine proteases promoting cytotoxicity of rogue cells) and perforin (glycoprotein responsible for pore formation in cell membranes) that help to break up the cell and send it into asbestosis.
+	\item Has MHC1\footnote{\concept{Major Histocompatibility Complex (MHC)} is a large locus on vertebrate DNA containing a set of closely linked polymorphic genes that code for cell surface proteins essential for the adaptive immune system.} regulator that down-regulates to stop from attacking.
+	\item Has FC receptor so that if it finds antibodies stuck in the surface of a cell, it will attack the cell.
+	\item In a $\mathrm{T_C}$ cell, the MHC receptor will recognize foreign antigen on MHC1 and attack the cell. If a virus down-regulates the production of MHC so that a $\mathrm{T_C}$ cell cannot be alerted to the presence of foreign antigen, NK cells attack it as well. This process is an innate response.
+\end{itemize}
+\end{itemize}
+2.6\quad \textbf{Primary Organs}
+\begin{itemize}
+\item Three primary lymphoid organs: bursa, bone marrow and thymus.
+\begin{itemize}
+\item Bone marrow:
+\begin{itemize}
+	\item Produces most of the immune cells.
+	\item Bone marrow has lots of fat that sends out signals that regulate hematopoiesis.
+	\item Produces lymphoid cells.
+	\item NK cells arise here and B cells rearrange their genes as part of their development.
+	\item T cells start out here and migrate into the thymus to rearrange their genes.
+	\item Primarily the femur\footnote{Thigh bone.}, humerus\footnote{Bone of the upper extremity.}, arm bones, hip bones, and sternum\footnote{T-shaped vertical bone that forms the anterior portion of the chest wall centrally.} that do the production of most of blood cells.
+\end{itemize}
+\item Thymus:
+\begin{itemize}
+	\item Rearrangement site for the T cells.
+	\item Has a cortex (outer layer) and medulla (inner layer). 
+	\item T cells start from the cortex. T cell progenitors come in in a relatively undifferentiated state. Then,
+	\begin{itemize}
+	    \item Rearranging genes occur. If no productive rearrangement is derived, the cell dies off.
+		\item They undergo a positive selection in the cortex to make sure they can identify antigen on an MHC molecule. If so, they migrate towards the medulla.
+		\item They undergo a negative selection in the medulla to get rid of T cells that recognize our own self antigens to prevent auto-immune diseases. 
+	\end{itemize}
+	Cells pass the three tests leave the circulation and head out to the secondary lymphoid organs to coordinate your immune response, and cells do not pass any of the test will die. Over 95\% of the cells undergo apoptosis as part of this process.
+\end{itemize}
+\end{itemize} 
+\end{itemize}
+2.7\quad \textbf{Secondary Organs}
+\begin{itemize}
+\item The secondary organs of the immune system form an interconnected surveillance system where the immune cells gather and exchange information, including the fluid, vessels and nodes.
+\item Circulation involves both the blood vessel (round trip) and the lymph (one-way from the organs out). The plasma from the blood filters into the tissues carrying the proteins, only the lymphoid cells crossover but not the blood cells or myeloid cells.  
+\item The lymphatic system picks up fluid throught the body. This drained interstitial fluid from tissues picking up lots of information is gathered up and filtered through the lymph nodes where the antigen is trapped and acted on. Eventually, these vessels grow into larger ones that in turn empty into\footnote{Flows into.} the thoracic duct, left subclavian vein, and then the heart to rejoin the blood circulation.
+\item The lymph system also extends into the head, named as the \concept{meningeal system}. It connects with the deep cervical or neck lymph nodes. It lies between the dura mater and the meninges outside the brain and between the meningial arteries and the dural sinuses, which are the veins. The sagittal sinus over the top of the head, transverse sinuses runnning along the side, a lymph vessel is buried in there. It will divide into two transverse branches that contains valves only in the skull, leading out to the cervical lymph nodes. 
+\item Fluids come into a lymph node and come out from the efferent vessel. The cortex of a lymph node holds the follicles and the B cells, the power cortex refers to the structure below the cortex, and the medulla sits inside.
+\item B cells activated by antigen are to wind up in follicles. The germinal center is where the B cells develop in response to signals from the follicular dendritic cells, $\mathrm{T_H}$ cells, and macrophages will clean up the debris. B cells learn how to bind more tightly to the particular pathgenic antigen here.
+\end{itemize}
+2.8\quad \textbf{Other Secondary and Tertiary Organs}
+\begin{itemize}
+\item The lymph nodes, spleen, and gut mucosa are all secondary lymphoid organs. \begin{itemize}
+	\item Spleen:
+	\begin{itemize}
+		\item Lies above the abdomen.
+		\item Filters and monitors blood but not lymph.
+		\item Has red pulp tissue where the macra fascias recycle old red blood cells.
+		\item Has white pulp tissue where T cells participate in immune surveillance.
+		\item Has a marginal zone that has B cells in follicles.
+	\end{itemize}
+	\item \concept{Mucosal Associated Lymphoid Tissue (MALT)} is a collection of tissues including \concept{Bronchial Associated Lymphoid Tissue (BALT)}, \concept{Nasal Associated Lymphoid Tissue (NALT)}, and \concept{Gut Associated Lymphoid Tissue (GALT)}.
+	\item The tonsils, appendix, and Peyer's patches (bunch of follicles) in the intestine of some animals also participate in the activation of B cells.
+	\item GALT:
+	\begin{itemize}
+		\item Picks up antigens from the lumen and transports into a developping follicle. Similar in aforementioned other issues.
+		\item M cell is sequestering a bunch of immune function cells to facilitate information flow.
+	\end{itemize}
+\end{itemize}
+\item The skin forms a tertiary organ:
+\begin{itemize}
+	\item Made up of the epidermis, epithelial tissue that sits on a basement membrane, and dermis.
+	\item The epidermis derives from embryonic ectoderm, and the dermis derives from embryonic mesoderm. The skin is produced by combining cells from two different tissue layers. It secrets lots of commounds to protect us from pathogenic attack.
+	\item Keratinocytes are epithelial cells that upon death retains the keratin and helps to make the skin waterproof. They also express MHC2 and present antigen to T cells. Setenal dendritic cells phagocytizes antigens here as well that can leave the epidermis and go off and look for T cells someplace else.
+	\item There is a speical kind of T cells reside in the epidermis and other mucosal tissues that have special receptors. They have built-in quasi-innate recognition for the possible dangerous organisms.
+\end{itemize}
+\end{itemize}
+2.9\quad \textbf{Final Issues}
+\begin{itemize}
+\item \concept{Apoptosis} is a controlled way of killing off a cell and disposing of the contents.
+\item \concept{Necrosis} means a cell swelling, breaking open, spilling its guts, and causing inflammaton.
 \end{itemize}
 \end{document}
