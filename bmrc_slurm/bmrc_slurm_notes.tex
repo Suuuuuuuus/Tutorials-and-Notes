@@ -291,17 +291,17 @@ When the job is finished, a default file ending with \code{.out} is produced tha
 	\item \code{-D} or \code{--chdir} can be used to tell Slurm what the workng directory should be:
 	\begin{itemize}
 		\item One can either pass this to the command line:
-		\begin{bash}
-		sbatch -D=/well/project/users/username/slurm_test hello.sh
-		\end{bash}
+\begin{bash}
+sbatch -D=/well/project/users/username/slurm_test hello.sh
+\end{bash}
 		\item One can also add an extra parameter to a script file
-		\begin{bash}
-		#SBATCH -D=/well/project/users/username/slurm_test
-		\end{bash}
+\begin{bash}
+#SBATCH -D=/well/project/users/username/slurm_test
+\end{bash}
 		\item Alternatively, one may want to alter the \code{.bashrc} file so that it works every time:
-		\begin{bash}
-		export SBATCH_ACCOUNT=project.prj 
-		\end{bash}
+\begin{bash}
+export SBATCH_ACCOUNT=project.prj 
+\end{bash}
 	\end{itemize}
 \end{itemize}
 \item It is suggested to use \code{module purge} at the start of our own script file first so that Slurm does not inherit from our environment when submitting the job. Then, we can load required environments in the script file.
