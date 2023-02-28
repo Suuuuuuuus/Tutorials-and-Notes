@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.16)  15 FEB 2023 22:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.16)  28 FEB 2023 19:22
 entering extended mode
-**"./Fundamentals of Immunology Notes.tex"
-(Fundamentals of Immunology Notes.tex
+**./bmrc_slurm_notes.tex
+(bmrc_slurm_notes.tex
 LaTeX2e <2021-06-01> patch level 1
 L3 programming layer <2021-08-27>
 (C:\Users\Sus\AppData\Local\Programs\MiKTeX\tex/latex/base\book.cls
@@ -1535,13 +1535,13 @@ Package: listings 2020/03/24 1.8d (Carsten Heinz)
 \fourthtabwidth=\skip85
 \halftabwidth=\skip86
 LaTeX Font Info:    Trying to load font information for T1+txtt on input line 1
-30.
+29.
 
 (C:\Users\Sus\AppData\Local\Programs\MiKTeX\tex/latex/txfonts\t1txtt.fd
 File: t1txtt.fd 2000/12/15 v3.1
 )
 LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 2
-75.
+74.
 
 (C:\Users\Sus\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
@@ -1550,27 +1550,27 @@ File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 LaTeX Warning: Unused global option(s):
     [UTF8].
 
-(Fundamentals of Immunology Notes.aux)
-\openout1 = `"Fundamentals of Immunology Notes.aux"'.
+(bmrc_slurm_notes.aux)
+\openout1 = `bmrc_slurm_notes.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 275.
-LaTeX Font Info:    ... okay on input line 275.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 275.
-LaTeX Font Info:    ... okay on input line 275.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 275.
-LaTeX Font Info:    ... okay on input line 275.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 275.
-LaTeX Font Info:    ... okay on input line 275.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 275.
-LaTeX Font Info:    ... okay on input line 275.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 275.
-LaTeX Font Info:    ... okay on input line 275.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 275.
-LaTeX Font Info:    ... okay on input line 275.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 275.
-LaTeX Font Info:    ... okay on input line 275.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 275.
-LaTeX Font Info:    ... okay on input line 275.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 274.
+LaTeX Font Info:    ... okay on input line 274.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 274.
+LaTeX Font Info:    ... okay on input line 274.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 274.
+LaTeX Font Info:    ... okay on input line 274.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 274.
+LaTeX Font Info:    ... okay on input line 274.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 274.
+LaTeX Font Info:    ... okay on input line 274.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 274.
+LaTeX Font Info:    ... okay on input line 274.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 274.
+LaTeX Font Info:    ... okay on input line 274.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 274.
+LaTeX Font Info:    ... okay on input line 274.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 274.
+LaTeX Font Info:    ... okay on input line 274.
 
 (C:\Users\Sus\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1597,90 +1597,90 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 \symgns@font=\mathgroup15
 LaTeX Font Info:    Overwriting symbol font `gns@font' in version `bold'
-(Font)                  TS1/ptm/m/n --> TS1/ptm/b/n on input line 275.
-Package gensymb Info: Math companion symbols declared on input line 275.
-LaTeX Info: Redefining \degree on input line 275.
-LaTeX Info: Redefining \celsius on input line 275.
+(Font)                  TS1/ptm/m/n --> TS1/ptm/b/n on input line 274.
+Package gensymb Info: Math companion symbols declared on input line 274.
+LaTeX Info: Redefining \degree on input line 274.
+LaTeX Info: Redefining \celsius on input line 274.
 Package gensymb Info: Using text companion symbols for \degree, \celsius and \p
-erthousand on input line 275.
-LaTeX Info: Redefining \ohm on input line 275.
-Package gensymb Info: Using \textohm for \ohm on input line 275.
-Package gensymb Info: Using \textmu for \micro on input line 275.
+erthousand on input line 274.
+LaTeX Info: Redefining \ohm on input line 274.
+Package gensymb Info: Using \textohm for \ohm on input line 274.
+Package gensymb Info: Using \textmu for \micro on input line 274.
 LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line
- 275.
+ 274.
  (C:\Users\Sus\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for OML+ztmcm on input line
- 275.
+ 274.
 
 (C:\Users\Sus\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for OMS+ztmcm on input line
- 275.
+ 274.
 
 (C:\Users\Sus\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for OMX+ztmcm on input line
- 275.
+ 274.
 
 (C:\Users\Sus\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for OMX+yhex on input line 
-275.
+274.
 
 (C:\Users\Sus\AppData\Local\Programs\MiKTeX\tex/latex/yhmath\omxyhex.fd
 File: OMXyhex.fd 
 File: OMXyhex.fd 2013/07/03 v1.1 YH's humble contribution to TeX maths (NP)
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 275
+LaTeX Font Info:    Trying to load font information for U+msa on input line 274
 .
 
 (C:\Users\Sus\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 275
+LaTeX Font Info:    Trying to load font information for U+msb on input line 274
 .
 
 (C:\Users\Sus\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 275.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 274.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 275.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 274.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 275.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 274.
 LaTeX Font Info:    Trying to load font information for U+rsfs on input line 27
-5.
+4.
 
 (C:\Users\Sus\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 LaTeX Font Info:    Trying to load font information for U+esvect on input line 
-275.
+274.
 
 (C:\Users\Sus\AppData\Local\Programs\MiKTeX\tex/latex/esvect\uesvect.fd
 File: uesvect.fd 
 )
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 2
-75.
+74.
 
 (C:\Users\Sus\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-Package xypdf Info: Line width: 0.3999pt on input line 275.
-Package hyperref Info: Link coloring ON on input line 275.
-LaTeX Info: Redefining \ref on input line 275.
-LaTeX Info: Redefining \pageref on input line 275.
-LaTeX Info: Redefining \nameref on input line 275.
+Package xypdf Info: Line width: 0.3999pt on input line 274.
+Package hyperref Info: Link coloring ON on input line 274.
+LaTeX Info: Redefining \ref on input line 274.
+LaTeX Info: Redefining \pageref on input line 274.
+LaTeX Info: Redefining \nameref on input line 274.
 
-(Fundamentals of Immunology Notes.out) (Fundamentals of Immunology Notes.out)
+(bmrc_slurm_notes.out) (bmrc_slurm_notes.out)
 \@outlinefile=\write5
-\openout5 = `"Fundamentals of Immunology Notes.out"'.
+\openout5 = `bmrc_slurm_notes.out'.
 
 
 *geometry* driver: auto-detecting
@@ -1718,54 +1718,57 @@ LaTeX Info: Redefining \nameref on input line 275.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \c@lstlisting=\count385
+(C:\Users\Sus\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+)
+(C:\Users\Sus\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+)
+LaTeX Font Info:    Trying to load font information for OML+ptm on input line 3
+28.
+
+(C:\Users\Sus\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omlptm.fd
+File: omlptm.fd 
+)
+LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <10> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 328.
+
 [1{C:/Users/Sus/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
 
 ]
-<Graphs/2.2.1.png, id=38, 598.6365pt x 349.305pt>
-File: Graphs/2.2.1.png Graphic file (type png)
-<use Graphs/2.2.1.png>
-Package pdftex.def Info: Graphs/2.2.1.png  used on input line 367.
-(pdftex.def)             Requested size: 299.31752pt x 174.65207pt.
- [2] [3 <./Graphs/2.2.1.png>] [4]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 452.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 340.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 452.
- [5] [6] [7]
-Overfull \hbox (10.42812pt too wide) in paragraph at lines 573--574
-[]\OT1/ptm/m/n/10 Though the pre-vi-ous mech-a-nism can kill off most pathogens
-, some may be able to sur-vive and use macrophages
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 340.
+
+Underfull \hbox (badness 10000) in paragraph at lines 340--340
+[][][]\OT1/ptm/m/n/8 For more in-for-ma-tion, re-fer to: [][]$\OT1/cmtt/m/n/8 h
+ttps : / / www . medsci . ox . ac . uk / for-[]staff / resources / bmrc /
  []
 
-<Graphs/3.5.1.png, id=76, 240.7905pt x 174.4335pt>
-File: Graphs/3.5.1.png Graphic file (type png)
-<use Graphs/3.5.1.png>
-Package pdftex.def Info: Graphs/3.5.1.png  used on input line 580.
-(pdftex.def)             Requested size: 180.59242pt x 130.82478pt.
-[8] [9 <./Graphs/3.5.1.png>] (Fundamentals of Immunology Notes.aux)
-Package rerunfilecheck Info: File `"Fundamentals of Immunology Notes".out' has 
-not changed.
+[2] [3] (bmrc_slurm_notes.aux)
+Package rerunfilecheck Info: File `bmrc_slurm_notes.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 35050 strings out of 478927
- 675037 string characters out of 2853483
- 1079280 words of memory out of 3000000
- 51977 multiletter control sequences out of 15000+600000
- 443847 words of font info for 137 fonts, out of 8000000 for 9000
+ 35593 strings out of 478927
+ 680005 string characters out of 2853483
+ 1400797 words of memory out of 3000000
+ 52487 multiletter control sequences out of 15000+600000
+ 443095 words of font info for 135 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 85i,11n,111p,3254b,624s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 85i,12n,111p,3236b,1476s stack positions out of 5000i,500n,10000p,200000b,80000s
 {C:/Users/Sus/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}<C:/U
-sers/Sus/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb
-><C:/Users/Sus/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cms
-y10.pfb><C:/Users/Sus/AppData/Local/Programs/MiKTeX/fonts/type1/urw/symbol/usyr
-.pfb><C:/Users/Sus/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.p
-fb><C:/Users/Sus/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb
->
-Output written on "Fundamentals of Immunology Notes.pdf" (9 pages, 368239 bytes
-).
+sers/Sus/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pf
+b><C:/Users/Sus/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
+tt10.pfb><C:/Users/Sus/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
+s/cm/cmtt8.pfb><C:/Users/Sus/AppData/Local/Programs/MiKTeX/fonts/type1/urw/time
+s/utmb8a.pfb><C:/Users/Sus/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/
+utmr8a.pfb><C:/Users/Sus/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/ut
+mri8a.pfb>
+Output written on bmrc_slurm_notes.pdf (3 pages, 97145 bytes).
 PDF statistics:
- 115 PDF objects out of 1000 (max. 8388607)
- 15 named destinations out of 1000 (max. 500000)
- 119 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 131 PDF objects out of 1000 (max. 8388607)
+ 45 named destinations out of 1000 (max. 500000)
+ 109 words of extra memory for PDF output out of 10000 (max. 10000000)
 
