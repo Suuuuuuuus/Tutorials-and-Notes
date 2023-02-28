@@ -2,3 +2,9 @@
 **/*.log
 **/*.out
 **/*.tex.bak
+*/*/*.dvi
+**/*.dvi
+*/*/*.aux
+*/*/*.log
+*/*/*.out
+*/*/*.tex.bak
