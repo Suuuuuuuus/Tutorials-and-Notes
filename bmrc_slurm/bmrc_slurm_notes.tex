@@ -292,11 +292,11 @@ When the job is finished, a default file ending with \code{.out} is produced tha
 	\begin{itemize}
 		\item One can either pass this to the command line:
 \begin{bash}
-sbatch -D=/well/project/users/username/slurm_test hello.sh
+sbatch -D /well/project/users/username/slurm_test hello.sh
 \end{bash}
 		\item One can also add an extra parameter to a script file
 \begin{bash}
-#SBATCH -D=/well/project/users/username/slurm_test
+#SBATCH -D /well/project/users/username/slurm_test
 \end{bash}
 		\item Alternatively, one may want to alter the \code{.bashrc} file so that it works every time:
 \begin{bash}
