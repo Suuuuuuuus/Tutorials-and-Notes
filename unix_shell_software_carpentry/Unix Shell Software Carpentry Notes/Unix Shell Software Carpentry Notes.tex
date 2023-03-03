@@ -321,6 +321,14 @@ Any names in the output that don’t have a classification symbol are plain old 
 	\item \code{nano draft.txt} creates a new file called \code{draft.txt} and uses \code{nano} to edit it, whereas \code{touch draft.txt} simply creates the new file.
 	\item \code{Ctrl + O} followed by \code{Enter} saves the file, and \code{Ctrl + X} quits the editor.
 \end{itemize}
+\item About \code{rename}:
+\begin{itemize}
+	\item The \code{rename} command is simply renaming files:
+	\begin{bash}
+rename <A> <B> *A*
+	\end{bash}
+	where all files containing A have this part renamed to B. 
+\end{itemize}
 \item About \code{mv}:
 \begin{itemize}
 	\item The \code{mv} command can move a file to another directory or simply rename a file if the previous and new files are in the same directory.
