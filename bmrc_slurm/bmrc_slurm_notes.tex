@@ -172,7 +172,7 @@ showstringspaces=false
 language=bash,
 basicstyle=\ttm\normalsize,
 tabsize=4,
-morekeywords={self, head, tail, uniq, sort, grep, cat, cut, echo, wc, cp, rm, mkdir, cd, nano, man, ls, history, bash, rmdir, find, plink, bcftools, bedtools, octopus},              % Add keywords here
+morekeywords={self, head, tail, uniq, sort, grep, cat, cut, echo, wc, cp, rm, mkdir, cd, nano, man, ls, history, bash, rmdir, find, plink, bcftools, bedtools, octopus, sacct, snakemake, column, df, sbatch, squeue, scancel, sstat, sprio, srun},              % Add keywords here
 keywordstyle=\color{deepblue}\normalsize\bfseries,
 emph={MyClass,__init__},          % Custom highlighting
 emphstyle=\ttb\color{deepred},    % Custom highlighting style
@@ -376,6 +376,15 @@ so that job B won't start until job A is finished. If both jobs are array jobs t
 \begin{bash}
 JOBA_ID=$(sbatch --parsable -p short --array 1-100 jobA.sh) 
 sbatch -p short --array 1-100 -d aftercorr:$JOBA_ID jobB.sh 
+\end{bash}
+\item One can use the following command
+\begin{bash}
+df -h /well/ansari/users/
+\end{bash}
+to check the usage of the group disk.
+\item One can use the following command to extract information of all IMCOMPLETE jobs:
+\begin{bash}
+sacct -n -o JobID,JobName,State | awk '{if(\$3!=\"COMPLETED\") print \$1\"\t\"\$2\"\t\"\$3}' | column -t
 \end{bash}
 \end{itemize}
 \end{document}
