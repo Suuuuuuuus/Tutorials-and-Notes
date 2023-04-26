@@ -172,7 +172,7 @@ showstringspaces=false
 language=bash,
 basicstyle=\ttm\normalsize,
 tabsize=4,
-morekeywords={self, head, tail, uniq, sort, grep, cat, cut, echo, wc, cp, rm, mkdir, cd, nano, man, ls, history, bash, rmdir, find, plink, bcftools, bedtools, octopus, sacct, snakemake, column, df, sbatch, squeue, scancel, sstat, sprio, srun},              % Add keywords here
+morekeywords={self, head, tail, uniq, sort, grep, cat, cut, echo, wc, cp, rm, mkdir, cd, nano, man, ls, history, bash, rmdir, find, plink, bcftools, bedtools, octopus, jellyfish, sacct, snakemake, column, df, sbatch, squeue, scancel, sstat, sprio, srun, tmux, sacct},              % Add keywords here
 keywordstyle=\color{deepblue}\normalsize\bfseries,
 emph={MyClass,__init__},          % Custom highlighting
 emphstyle=\ttb\color{deepred},    % Custom highlighting style
@@ -386,5 +386,29 @@ to check the usage of the group disk.
 \begin{bash}
 sacct -n -o JobID,JobName,State | awk '{if(\$3!=\"COMPLETED\") print \$1\"\t\"\$2\"\t\"\$3}' | column -t
 \end{bash}
+\item Interactive session \code{tmux}:
+\begin{itemize}
+	\item To start an interactive session,	
+	\begin{bash}
+tmux new -s sus
+	\end{bash}
+	where \code{sus} is the name of the terminal. One can use \code{Ctrl B} followed by \code{D} to temporarily disconnect the terminal, or use \code{Ctrl D} to kill it.
+	\item One can list all existing terminals by:
+	\begin{bash}
+tmux ls
+	\end{bash}
+	\item One can attach to an existing terminal by:
+	\begin{bash}
+tmux attach -t sus
+	\end{bash}
+	\item One can kill a specific session by:
+	\begin{bash}
+tmux kill-ses -t sus
+	\end{bash}
+	or kill all sessions by:
+\end{itemize}
+	\begin{bash}
+tmux kill-server
+	\end{bash}
 \end{itemize}
 \end{document}
