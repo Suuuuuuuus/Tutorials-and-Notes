@@ -12,6 +12,7 @@
 \usepackage{makecell}
 \usepackage{gensymb}
 \usepackage{cancel}
+\usepackage{lscape}
 \usepackage{graphicx}
 \usepackage{pifont}
 \usepackage[all,pdf]{xy}
@@ -135,6 +136,8 @@ linkcolor=black
 \definecolor{deepblue}{rgb}{0,0,0.5}
 \definecolor{deepred}{rgb}{0.6,0,0}
 \definecolor{deepgreen}{rgb}{0,0.5,0}
+
+\newcommand{\pink}[1]{\textcolor{magenta}{#1}}
 
 \usepackage{listings}
 
@@ -522,7 +525,7 @@ Antigen hydrolyzed in \et phagolysosome \et proteosome\\ \Xhline{1.2pt}
 \item \concept{Apoptosis} is a controlled way of killing off a cell and disposing of the contents.
 \item \concept{Necrosis} means a cell swelling, breaking open, spilling its guts, and causing inflammaton.
 \end{itemize}
-3.3\quad Innate Targeting of Pathogens
+3.3\quad \textbf{Innate Targeting of Pathogens}
 \begin{itemize}
 \item People tend to only recognize few protein molecules innately, including 
 \begin{itemize}
@@ -539,7 +542,7 @@ Antigen hydrolyzed in \et phagolysosome \et proteosome\\ \Xhline{1.2pt}
 	\item Psoriasin found on skin is against E.coli. Too much of it exposed on sunlight can trigger eczema.
 	\item Mannose-binding lectins in the plasma.
 	\item C-reactive protein recognizes microbes and damaged self cells. It is a sign of general long-term inflammation and is associated with heart attack.
-	\item \concept{Nucleotide-binding oligomerization domain (NOD) proteins} in cytoplasm sometimes bind nucleic acid and sometimes bind cell wall compounds.,
+	\item \concept{Nucleotide-binding oligomerization domain (NOD) proteins} in cytoplasm sometimes bind nucleic acid and sometimes bind cell wall compounds.
 	\item \concept{Toll-like receptors (TLR)} represents a huge family of molecules. It recognizes parasitic surface proteins using leucine-rich hooks extending into the exterior of the cell and can trigger inflammatory response that will activate NF-kB, a transcription factor that will turn on many genes to fight various infections.
 	\begin{itemize}
 		\item Plasma membrane TLR recognizes surface characteristics of pathogens, such as cell wall, capsule compounds and flagella.
@@ -551,7 +554,7 @@ Antigen hydrolyzed in \et phagolysosome \et proteosome\\ \Xhline{1.2pt}
 	\end{itemize}
 \end{itemize}
 \end{itemize}
-3.4\quad Myeloid Cell Function
+3.4\quad \textbf{Myeloid Cell Function}
 \begin{itemize}
 \item After phagocytosis, pathogens in the phagolysosome die when their cell membranes are punctured by \concept{defensin} and their organic molecules are oxidized by HOCl.
 \item A compound in the membrane of the phagolysosome takes NADPH and takes the hydrogen off of it to generate $\mathrm{H_2O_2}$. This is an oxidative process, considered to be a form of respiration. It is not generating ATP but some toxic compounds to kill off pathogens. When a neutrophil or a micropahge pahgocytizes a bacterium, a \concept{respiratory burst} takes place, a rapid oxygen uptake as the enzymes are activated. Simultaneously, intake of $\mathrm{K}^+$ takes place to make the vacuole hypertonic. Outside the membrane, we also polymerize actin that acts like a mini-cell wall to keep it from swelling.
@@ -572,7 +575,7 @@ Antigen hydrolyzed in \et phagolysosome \et proteosome\\ \Xhline{1.2pt}
 \end{itemize}
 \item Though the previous mechanism can kill off most pathogens, some may be able to survive and use macrophages to transport, like tuberculosis and leprosy.
 \end{itemize}
-3.5\quad Quizzes
+3.5\quad \textbf{Quizzes}
 \begin{itemize}
 \item Neutrophils leave the blood vessels
 and enter into infected tissue via a multistep process.
@@ -589,5 +592,97 @@ neutrophil, which will lead to internal changes in that cell.
 \end{itemize}
 \item Sleeping sickness and Chagas, malaria, and giardia and leishmaniosis are all caused by eukaryotic trypanosomes whose flagellae are different from that of the prokaryotes.
 \end{itemize}
-4.1\quad Context
+4.2\quad \textbf{The Immunoglobulin Superfamily}
+\begin{itemize}
+\item The \textcolor{magenta}{immunoglobulin domain} is referred to a region of the protein where the peptide has folded back up so that hydrophobic parts are inside, hydrophilic parts are outside, and they are stabilized with a disulfide bond. A typical immunoglobulin protein in the subfamily has one or more of these domains, and is typically embedded in the plasma membrane.
+\end{itemize}
+4.3\quad \textbf{Ig Receptors and Antibodies}
+\begin{itemize}
+\item If you take blood plasma and put it in electrophoresis apparatus, you get again a series of peaks:
+\begin{itemize}
+	\item The first peak is \pink{albumins}: about 60000 molecular weight small blood proteins that help carry things around and also keep blood osmotic pressure under control.
+	\item The other peaks are called $\alpha_1$, $\alpha_2$, $\beta$ and $\gamma$, respectively.
+	\item These proteins are called \pink{globulins} because they are soluble, in contrast to fibrous proteins which are not soluble.
+\end{itemize}
+\end{itemize}
+4.4\quad \textbf{Form and Function}
+\begin{itemize}
+\item A typical antibody has two Fab fragments, a Fab$_2$ fragment, and a Fc fragment:
+\begin{itemize}
+\item A Fab fragment is also known as light chain\footnote{A \pink{chain} in immunology is a synonym for peptide.} with molecular weight about 50k.
+\item Fab$_2$ fragment and Fc fragment forms a heavy chain with molecular weight about 100k.
+\item Fc parts of antigens are very similar, but loop regions at the end of the antibody tends to be variable.
+\item A carbohydrate (oligosaccharides) as part of the Fc stage is attached the second chain from the C-terminal and pulls apart the heavy domains in the Fc, whose main significance is in signalling to other parts of the immune system just how to treat whatever this antibody is hooked up against.
+\end{itemize}
+\item A light chain is a joint of a constant region and a variable region. The whole light chain can either be $\kappa$ or $\lambda$, dictated by two different genes. Human has 4 different choices to put into the $\lambda$. Any cell can either make the $\kappa$ or the $\lambda$, that is, the two light chains in an antibody have to be the same type.
+\item There are 5 different types of antibodies, based on the specificity of heavy chains. However, any heavy chain (also pick by that specific cell) can be associated with any light chain, which renders the antibody the capability of binding different antigens.
+\end{itemize}
+4.5\quad \textbf{Immunoglobulin Classes}
+\begin{itemize}
+\item There are two major classes of immunoglobulins. Both of them have the variable chain, one constant domain called C1, either a hinged region or another constant domain (C2) that tells the classes apart, and the Fc stem region that has two constant domains, C2 (C3) the bendy ones and C3 (C4) the rigid ones.
+\item The hinged region turns out to be a string of prolenes that are stabilized by typically two disulfide bonds.
+\item The bottom is the C-terminus of this antibody where attached to the membrane.
+\end{itemize}
+\newpage
+4.6\quad \textbf{Specific Ig Types}
+\begin{itemize}
+\item Antibody classes:
+
+\begin{tabular}{m{0.5cm}<{\centering}m{0.5cm}<{\centering}m{1cm}<{\centering}m{0.8cm}<{\centering}m{0.8cm}<{\centering}m{2cm}<{\centering}m{1.6cm}<{\centering}m{4cm}<{\centering}} \Xhline{1.2pt}
+\centering
+Ab type \et hinge or rigid \et forms complexes \et J chain \et sub-classes \et timing \et membrane-spanning Ig receptor \et role \\ \hline
+M \et rigid \et yes \et yes \et  no \et first class produced in maturing B cells \et yes, naive and memory \et general; activates complement, summons phagocytes, crosses epithelia \\ \hline
+D \et hinge \et no \et no \et no \et produced as Ig receptor on mature but naive B cells \et on naive cells, rarely soluble or memory \et aids naive B cell activation \\ \hline
+G \et hinge \et no \et no \et 4 \et after class switching in activated B cells \et memory cells only \et specific responses to acute infections \\ \hline
+A \et hinge \et yes \et yes \et 2 \et after class switching in activated B cells \et memory cells only \et crosses epithelia, protects boundaries \\ \hline
+E \et rigid \et no \et no \et no \et after class switching in activated B cells \et memory cells only \et T$_\mathrm{H}$2 response: defense against worms pollutants \& chronic infections; allergies \\ \Xhline{1.2pt}
+\end{tabular}
+\\
+\item G-class antibodies:
+\begin{center}
+\begin{tabular}{m{1cm}<{\centering}m{2cm}<{\centering}m{1.5cm}<{\centering}m{1.5cm}<{\centering}m{5cm}<{\centering}} \Xhline{1.2pt}
+Class \et hinge length (\# disulfides) \et complement activation \et phagocyte activator \et function \\ \hline
+1 \et 2 \et strong \et very strong \et inflammatory: T$_{\mathrm{H}}$1 response to serious threats \\ \hline
+2 \et 4 \et weak \et no \et only mildly inflammatory; may cooperate with A and E antibodies during T$_{\mathrm{H}}$2 responses \\ \hline
+3 \et 11 \et very strong \et very strong \et highly inflammatory: T$_{\mathrm{H}}$1 response to intracellular pathogens \\ \hline
+4 \et 2 \et no \et strong \et intermediate response (possibly mop-up) \\ \Xhline{1.2pt}
+\end{tabular}
+\end{center}
+\item M class antibody is secreted with the J chain (which allows molecules to cross the epithelia) and in an association of typically five of the units put together with disulfide bonds.
+\item A class antibody comes with 2 sub-classes. They can be found on the membrane but also secreted in dimers/trimers. They can go to mucus, tears, saliva, breast milk, and one can make up to 15 grams of this a day. It is as a barrier to an assortment of pathogens that prevents one from getting sick. Sometimes bacteria can make protease to attach the hinge region of this antibody to fight it off.
+\item E class antibody only occurs in the form of monomer. Its Fc region attaches and even pre-attaches to the FC receptors of basophils, mast cells and eosinophils. 
+\end{itemize}
+4.7\quad \textbf{Immunoglobulins in Action}
+\begin{itemize}
+\item \pink{Haptens} are something that is too small to cross-link two receptors in a B cell.
+\item Haptens are too small to be immunogenic, so we can manipulate by sticking lots of haptens to enlarged proteins such as bovine serum albumin or BSA.
+\end{itemize}
+4.8\quad \textbf{Fc Biological Activity}
+\begin{itemize}
+\item An antibody, instead of summoning basophils, phagocytes, etc., can also activate the \pink{complement} system, part of the immune system that enhances the ability of antibodies and phagocytic cells to clear microbes and damaged cells from an organism, promote inflammation, and attach the pathogen's cell membrane.
+\item \pink{Antibody-dependent cellular cytotoxicity (ADCC)} is a mechanism of a cell-mediated immune defense whereby an effector cell of the immune system kills a target cell, whose membrane-surface antigens have been bound by specific antibodies. 
+\item J chains of the A and M classes antibodies can trigger \pink{transcytosis}, a type of transcellular transport in which various macromolecules are transported across the interior of a cell, by providing a hook for a membrane embedded transport protein to pick up an antibody complex and transport it from the plasma, across the epithelia, and into gut or breast milk.
+\item \pink{Idiotype} is a shared characteristic between a group of immunoglobulin or T-cell receptor (TCR) molecules based upon the antigen binding specificity and therefore structure of their variable region. For example, it can refer to an M class antibody and an A class antibody that have the same N-terminus of the variable chain.
+\item \pink{Isotype} can refer to the same class of antibodies that are bound to different antigens (different N-terminus of the variable chain).
+\end{itemize}
+4.9\quad \textbf{The B Cell Receptor}
+\begin{itemize}
+\item Immunoglobulin receptors are just Ig antibodies stuck on cell membrane. They can slide aside the cell membrane but not getting out or in. When B cells recognize foreign antigens, they recognize it when two neighboring receptors will bind to that antigen and cross-link. A single receptor cannot begin the signalling process because their cytoplasmic regions are short and don't contain any signalling domains.
+\item \pink{CD79A} and \pink{CD79B} (previously known as Ig$\alpha$ and Ig$\beta$) form a hetero-dimer on the plasma membrane that appears next to an Ig molecule, joined by a disulfide bond. Their cytoplasmic region, specifically a region called \pink{immuno-tyrosine activation motifs (ITAMs)}, can pick up a covalent phosphate (put on a tyrosine) and trigger a response.  
+\item One can actually make memory cells for all the different classes of antibodies. These memory cells will lie in wait in case that antigen shows up again. Once a class switches away from the naive cells, from then on, in whatever class of antibody one is producing, that is the only class of receptor present in the surface of the cell.
+\end{itemize}
+4.10\quad \textbf{Monoclonal Antibodies}
+\begin{itemize}
+\item Typically, a B cell can only live for several weeks. What we can do to make it immortal is via \pink{hybridoma}, that is, to fuse a desired B lineage cell with a B cancer cell:
+\begin{itemize}
+	\item Put B cells extract from plasma together with \pink{myeloma} cell (B cancer cell) that makes no antibody in polyethylene glycol (to disrupt membranes), and they tend to fuse together.
+	\item Put them into an \pink{hypoxanthine aminopterin thymidine (HDT)} medium. As rapidly dividing cells, these cells need to make DNA. There are several pathways for these cells to do this: a de novo pathway to make everything from scratch, or a salvage pathway to pick up materials to salvage them (here supplied by hypoxanthine and thymidine). Here, aminopterin can block the de novo pathway so that only the hybridoma can be retained, as myeloma cells cannot reproduce via the salvage pathway.
+	\item Engineer the antibody-producing cells to make a human, not a mouse antibody.
+\end{itemize}
+\end{itemize}
+4.11\quad \textbf{Quizzes}
+\begin{itemize}
+\item \pink{Adjuvant} is a substance that increases or modulates the immune response to a vaccine. The most common category of adjuvants in US vaccines is aluminum salts, which activate cytoplasmic NOD receptors to improve the effectiveness of antibody production. Bacterial cell wall peptides have been used in the past, but these can produce an excess inflammatory response.
+\item \pink{Mercaptoethanol} can reduce the disulfide bonds; pepsin is an endopeptidase that breaks down proteins into smaller peptides.
+\end{itemize}
 \end{document}
