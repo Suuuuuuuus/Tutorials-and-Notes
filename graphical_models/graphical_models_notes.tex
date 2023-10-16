@@ -1,0 +1,388 @@
+\documentclass[UTF8]{book}
+%\usepackage{ctex}
+\usepackage{amsmath}
+\newcommand\hmmax{0}
+\newcommand\bmmax{0}
+\usepackage{bm}
+\usepackage{dsfont}
+\usepackage{makeidx}
+\usepackage{enumitem}
+\usepackage{rotating} 
+\usepackage{yhmath}
+\usepackage{textcomp,booktabs}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{colortbl}
+\usepackage{makecell}
+\usepackage{gensymb}
+\usepackage{cancel}
+\usepackage{graphicx}
+\usepackage{pifont}
+\usepackage[all,pdf]{xy}
+\usepackage{exscale}
+\usepackage{blindtext}
+\usepackage{hyperref}
+\hypersetup{
+colorlinks=true,
+linkcolor=black
+}
+\usepackage{nameref}
+\usepackage{relsize}
+\usepackage{titlesec}
+\usepackage{ifthen}
+\usepackage{array}
+\usepackage[flushleft]{threeparttable}
+\usepackage{diagbox}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{bbm}
+\usepackage{ulem}
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{mathptmx}
+\usepackage{amssymb}
+\usepackage{geometry}
+\geometry{a4paper, left=2.54cm,right=2.54cm,top=2.54cm,bottom=2.54cm}
+%\geometry{b5paper, left=1.6cm,right=2cm,top=2cm,bottom=2cm}
+\usepackage{mathrsfs}
+\usepackage{tikz,tkz-euclide}
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shapes,arrows}
+\usepackage{esvect}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{} % clear all fields 
+\cfoot{}
+\fancyhead[LE,RO]{\thepage} 
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\linespread{1.4}
+\date{}
+\graphicspath{ {Graphs} }
+\usepackage{listings}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  frame=single,
+  breaklines=true,
+  backgroundcolor=\color{gray!20!white}
+}
+\definecolor{codegray}{gray}{0.8}
+\newcommand{\code}[1]{\colorbox{codegray}{\texttt{#1}}}
+%通用：
+\newcounter{mylabelcounter}
+\makeatletter
+\newcommand{\labeltext}[2]{%
+#1\refstepcounter{mylabelcounter}%
+\immediate\write\@auxout{%
+  \string\newlabel{#2}{{1}{\thepage}{{\unexpanded{#1}}}{mylabelcounter.\number\value{mylabelcounter}}{}}%
+}%
+}
+%Xsum
+\DeclareFontFamily{U} {cmex}{}
+\DeclareFontShape{U}{cmex}{m}{n}{
+  <-6> cmex5
+  <6-7> cmex6
+  <7-8> cmex7
+  <8-9> cmex8
+  <9-10> cmex9
+  <10-12> cmex10
+  <12-> cmex12}{}
+\DeclareSymbolFont{Xcmex} {U} {cmex}{m}{n}
+\DeclareMathSymbol{\Xdsum}{\mathop}{Xcmex}{88}
+\DeclareMathSymbol{\Xtsum}{\mathop}{Xcmex}{80}
+\DeclareMathOperator*{\Xsum}{\mathchoice{\Xdsum}{\Xtsum}{\Xtsum}{\Xtsum}}
+%Xsum
+%choice
+\newcommand{\fourch}[4]{%~\hfill(\qquad)\\
+\begin{tabular}{*{4}{@{}p{0.25\textwidth}}}(A)~#1 & (B)~#2 & (C)~#3 & (D)~#4\end{tabular}}
+\newcommand{\twoch}[4]{%~\hfill(\qquad)\\
+\begin{tabular}{*{2}{@{}p{0.5\textwidth}}}(A)~#1 & (B)~#2\end{tabular}\\\begin{tabular}{*{2}{@{}p{0.5\textwidth}}}(C)~#3 & (D)~#4\end{tabular}}
+\newcommand{\onech}[4]{%~\hfill(\qquad)\\
+(A)~#1 \\ (B)~#2 \\ (C)~#3 \\ (D)~#4}
+ 
+\newlength\widthcha
+\newlength\widthchb
+\newlength\widthchc
+\newlength\widthchd
+\newlength\widthch
+\newlength\tabmaxwidth
+\setlength\tabmaxwidth{1\textwidth}
+\newlength\fourthtabwidth
+\setlength\fourthtabwidth{0.25\textwidth}
+\newlength\halftabwidth
+\setlength\halftabwidth{0.5\textwidth}
+\newcommand{\choice}[4]{\settowidth\widthcha{AM.#1}\setlength{\widthch}{\widthcha}
+    \settowidth\widthchb{BM.#2}
+    \ifthenelse{\widthch<\widthchb}{\setlength{\widthch}{\widthchb}}{}
+    \settowidth\widthchb{CM.#3}
+    \ifthenelse{\widthch<\widthchb}{\setlength{\widthch}{\widthchb}}{}
+    \settowidth\widthchb{DM.#4}
+    \ifthenelse{\widthch<\widthchb}{\setlength{\widthch}{\widthchb}}{}
+    \ifthenelse{\widthch<\fourthtabwidth}{\fourch{#1}{#2}{#3}{#4}}
+    {\ifthenelse{\widthch<\halftabwidth\and\widthch>\fourthtabwidth}{\twoch{#1}{#2}{#3}{#4}}
+        {\onech{#1}{#2}{#3}{#4}}}}
+%choice
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+
+% Custom colors
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+\usepackage{listings}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+morekeywords={self},              % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=single,                         % Any extra options here
+showstringspaces=false
+}}
+
+
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\pythonexternal[2][]{{
+\pythonstyle
+\lstinputlisting[#1]{#2}}}
+
+% Python for inline
+\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+%%%%%
+% Bash style for highlighting
+\newcommand\bashstyle{\lstset{
+language=bash,
+basicstyle=\ttm\normalsize,
+tabsize=4,
+morekeywords={self, head, tail, uniq, sort, grep, cat, cut, echo, wc, cp, rm, mkdir, cd, nano, man, ls, history, bash, rmdir, find, plink, bcftools, bedtools, octopus, jellyfish, sacct, snakemake, column, df, sbatch, squeue, scancel, sstat, sprio, srun, tmux, sacct},              % Add keywords here
+keywordstyle=\color{deepblue}\normalsize\bfseries,
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=single,                         % Any extra options here
+showstringspaces=false
+}}
+
+
+% Python environment
+\lstnewenvironment{bash}[1][]
+{
+\bashstyle
+\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\bashexternal[2][]{{
+\bashstyle
+\lstinputlisting[#1]{#2}}}
+
+% Python for inline
+\newcommand\bashinline[1]{{\bashstyle\lstinline!#1!}}
+%%%%%
+\newcommand{\dollar}{\mbox{\textdollar}}
+\newcommand{\perpp}{\ensuremath{\perp\!\!\!\!\perp}}
+\newcommand{\dps}[1]{\ensuremath{\displaystyle{#1}}}
+\newcommand\ffrac[2]{\ensuremath{\dfrac{\;#1\;}{\;#2\;}}}
+\newcommand{\comma}{\, \; \;\mathclap{\text{，}}} %用于mathmode中的逗号
+\newcommand{\semicolon}{\, \; \;\mathclap{\text{；}}} %用于mathmode中的分号
+\newcommand{\pl}{\phantom{l}} %用来占位
+\newcommand{\un}{\ding{172}}
+\newcommand{\deux}{\ding{173}}
+\newcommand{\trois}{\ding{174}}
+\newcommand{\quatre}{\ding{175}}
+\newcommand{\et}{&}
+\newcommand{\f}{^2}
+\newcommand{\xz}{(\qquad)}
+\newcommand{\tk}{\underline{\qquad\qquad}}
+%高等数学：
+\renewcommand{\d}{\,\mathrm{d}}
+\newcommand{\dt}{\,\mathrm{d}t}
+\newcommand{\dr}{\,\mathrm{d}r}
+\newcommand{\du}{\,\mathrm{d}u}
+\newcommand{\dv}{\,\mathrm{d}v}
+\newcommand{\dx}{\,\mathrm{d}x}
+\newcommand{\dy}{\,\mathrm{d}y}
+\newcommand{\dz}{\,\mathrm{d}z}
+\newcommand{\df}{\,\mathrm{d}f}
+\newcommand{\bigmid}{\, \bigg | \,} %用于集合中有分数的情况
+\newcommand\matharr{\tikz[baseline=-0.4ex]\draw[-stealth] (0,0) -- + (3mm,0);} %用于下标中的右箭头
+\newcommand\textarr{\; \tikz[baseline=-0.55ex]\draw[-stealth] (0,0) -- + (4mm,0);} %用于文本中的右箭头，注意用占位符调整前后间距
+\newcommand{\limite}[2]{\ensuremath{\lim\limits_{#1\matharr #2}}} %#1趋向于#2
+\newcommand{\dlimite}[4]{\ensuremath{\displaystyle{\lim_{\substack{ \phantom{l}#1\matharr #2\phantom{l} \\ #3\matharr #4}}}}} %#重极限：1趋向于#2，#3趋向于#4，phantom{l}用来占位
+\newcommand{\neighbr}{\ensuremath{\mathring{U}(x_0\comma \delta)}} %去心邻域U
+\newcommand{\neighbor}{\ensuremath{U(x_0\comma \delta)}} %邻域U
+\newcommand{\tikzrm}[1]{
+	\fill[white] #1 circle(1.5pt);
+	\draw #1 circle(1.5pt);
+}
+\newcommand{\derivee}[4]{
+	\ffrac{\,\mathrm{d}^{#1}#2}{\,\mathrm{d}#3^{#4}}
+}
+\newcommand{\intscript}[2]{\biggl.\biggr|_{\, #2}^{\, #1}} %求出原函数以后代入的积分上下限
+\newcommand{\concept}[1]{\textcolor{magenta}{#1}}
+\renewcommand{\emph}[1]{\textcolor{blue}{#1}}
+\newcommand{\dint}[2]{\ensuremath{\displaystyle{\int_{#2}^{#1}}}}
+\newcommand{\diint}[4]{\ensuremath{\displaystyle{\int_{#2}^{#1}\int_{#4}^{#3}}}}
+\newcommand{\bint}{\mathlarger{\int}} %用于将幂次上的积分号放大
+\newcommand{\exiint}{\ensuremath{\!\!\!}} %用于缩短累次积分中积分号的距离
+\newcommand{\fxy}{\ensuremath{f(x\comma y)}}
+\newcommand{\xoyo}{\ensuremath{(x_0\comma y_0)}}
+\newcommand{\series}{\ensuremath{\dps{\Xsum_{n=1}^\infty}}} %级数
+\newcommand{\serieso}{\ensuremath{\dps{\Xsum_{n=0}^\infty}}} %0开始的级数
+%线性代数：
+\newcommand{\pA}{\ensuremath{\pmb{A}}}
+\newcommand{\pB}{\ensuremath{\pmb{B}}}
+\newcommand{\pC}{\ensuremath{\pmb{C}}}
+\newcommand{\pO}{\ensuremath{\pmb{O}}}
+\newcommand{\pP}{\ensuremath{\pmb{P}}}
+\newcommand{\pQ}{\ensuremath{\pmb{Q}}}
+\newcommand{\pE}{\ensuremath{\pmb{E}}}
+\newcommand{\px}{\ensuremath{\pmb{x}}}
+\newcommand{\pX}{\ensuremath{\pmb{X}}}
+\newcommand{\pR}{\ensuremath{\pmb{R}}}
+\newcommand{\pZ}{\ensuremath{\pmb{Z}}}
+\newcommand{\pal}{\ensuremath{\pmb{\alpha}}}
+\newcommand{\pbe}{\ensuremath{\pmb{\beta}}}
+\newcommand{\pxi}{\ensuremath{\pmb{\xi}}}
+\newcommand{\pet}{\ensuremath{\pmb{\eta}}}
+\renewcommand{\t}{\ensuremath{^\mathrm{T}}}
+\newcommand\laarr{\qquad\tikz\draw[-stealth] (0,0) -- + (7mm,0);\qquad} %用于矩阵中的初等变换
+\newcommand{\laarrt}[1]{\qquad\tikz\draw[-stealth] (0,0) -- (4mm,0) node[above]{#1}--+ (4mm,0);\qquad} %初等变换上带字
+%概率：
+\newcommand{\XY}{\ensuremath{(X\comma Y)}}
+\newcommand{\Cov}{\ensuremath{\mathrm{Cov}}}
+\newcommand{\cip}{\tikz[baseline=-0.55ex]\draw[-stealth] (0,0) -- (2mm,0) node[above]{$\;\;P$}--+ (4mm,0);\;} %依概率收敛
+\newcommand{\seriesn}{\ensuremath{\dps{\Xsum_{i=1}^n}}} %1开始到n的连续求和
+\begin{document}
+%\kaishu
+\begin{center}
+\Large{2023-2024 Graphical Model Notes}
+\end{center}
+\large{\textbf{Chapter 3\quad Exponential Families and Contingency Tables}}
+\begin{itemize}
+\item Denote $X_V \equiv (X_v: v\in V)$, indexed by $V=\{1,\cdots,p\}$. Each $X_v$ takes values in the set $\mathcal{X}_v$. For a subset $A\subseteq V$, we write $X_A$ to denote $(X_v: v\in A)$.
+\item Let $p(\cdot ;\theta)$ be a collection of probability densities over $\mathcal{X}$ indexed by $\theta \in \Theta$. We say that $p$ is an \concept{exponential family} if it can be written as 
+\begin{align*}
+	p(x;\theta) \et = \exp\left\{\Xsum_i\theta_i\phi_i(x) - A(\theta) - C(x)\right\}\\
+	\et = \exp\left\{<\theta,\phi(x)> - A(\theta) - C(x)\right\}
+\end{align*}
+\begin{itemize}
+	\item The family is said to be \concept{regular} if $\Theta$ is a non-empty open set.
+	\item The functions $\phi_i$ are the \concept{sufficient statistics}.
+	\item The components $\theta_i$ are the \concept{canonical/natural parameters}.
+	\item The function $A(\theta)$ is the \concept{cumulant function} such that the distribution normalises:
+	$$
+		A(\theta) = \log\int\exp\{<\theta , \phi(x)> - C(x)\}\dx	
+	$$
+	\item The function $Z(\theta) \equiv e^{A(\theta)}$ is the \concept{partition function}.
+\end{itemize}
+\item We have
+$$
+\nabla A(\theta) = \mathbb{E}_{\theta}\phi(X) \qquad \nabla\nabla\t A(\theta) = \Cov_{\theta}\phi(X)
+$$
+$A(\theta)$ and $-\log p(x;\theta)$ are convex in $\theta$, and the map $\mu(\theta):\theta \mapsto \nabla A(\theta)$ is bijective, named the \concept{mean function}. We care about convexity because it does not have multiple local minima, which in turn facilitates computation.
+\item Let $X_V = (X_1,\cdots,X_p)\t\in\mathbb{R}^p$ be a random vector. Let $\mu\in\mathbb{R}^p$ and $\Sigma\in\mathbb{R}^{p\times p}$ be a positive definite symmetric matrix. We say that $X_V$ has a \concept{multivariate Gaussian distribution} with $\mu$ and $\Sigma$ if the joint density is 
+\begin{align*}
+	f(x_V) \et = \dfrac{1}{(2\pi)^{\frac{p}{2}}|\Sigma|^{\frac{1}{2}}}\exp\left\{-\dfrac{1}{2}(x_V-\mu)\t\Sigma^{-1}(x_V-\mu)\right\}\\
+	\et = \dfrac{1}{(2\pi)^{\frac{p}{2}}}\exp\left\{-\dfrac{1}{2}x_V\t Kx_V + \mu\t Kx_V - \dfrac{1}{2}\mu\t K\mu + \dfrac{1}{2}\log |K|\right\} \qquad x_V\in\mathbb{R}^p
+\end{align*}
+Here, $K\equiv\Sigma^{-1}$ is called the \concept{concentration matrix}. Let 
+$$
+\phi(x_V) = \left(x_v, -\dfrac{1}{2}x_Vx_V\t\right) \qquad \theta = (K\mu ,K)
+$$
+we could easily tell that the multivariate Gaussian distribution is an exponential family\footnote{For two matrices $A$ and $B$, we have $<A,B>=\mathrm{tr}(A,B\t)$.}.
+\item Let $X_V$ have a multivariate Gaussian distribution with concentration matrix $K=\Sigma^{-1}$, then $X_i\perpp X_j\mid X_{V\setminus\{i,j\}}$ iff $k_{ij} = 0$.
+\item Let $X_V^{(i)}=(X_1^{(1)},\cdots,X_p^{(i)})$ be sampled over individuals $i=1,\cdots , n$ and define
+$$
+n(x_V) \equiv \Xsum_{i=1}^n\mathbbm{1}\{X_1^{(i)}=x_1,\cdots,X_p^{(i)}=x_p\}
+$$
+the number of individuals who have the response pattern $x_V$. These counts are the sufficient statistics for the multinomial model with log-likelihood
+\begin{align*}
+	l(p; n)\et = \Xsum_{x_V}n(x_V)\log p(x_V)\\
+	\et = \Xsum_{x_V\neq 0_V} n(x_V)\log\dfrac{p(x_V)}{p(0_V)} +n\log p(0_V)
+\end{align*}
+where $0_V$ is the vector of zeros, $p(x_V)\geq 0$, and $\Xsum_{x_V}p(x_V)=1$. The multinomial distribution is also an exponential family with
+\begin{itemize}
+	\item Sufficient statistics given by $n(x_V)$.
+	\item Canonical parameters given by $\log\dfrac{p(x_V)}{p(0_V)}$.
+	\item Convex cumulant function given by
+	$$
+		-\log p(0_V) = \log\left(1+\Xsum_{x_V\neq 0_V}e^{\theta (x_V)}\right)	
+	$$
+\end{itemize}
+Each possibility $x_V$ is called a \concept{cell} of the table. Given $A\subseteq V$, 
+$$
+n(x_A)\equiv \Xsum_{x_B}n(x_A,x_B)
+$$
+where $B=V\setminus A$ is called the \concept{marginal table}.
+\item The \concept{log-linear} parameters for $p(x_V)>0$ are defined by the relation
+\begin{align*}
+	\log p(x_V) \et = \Xsum_{A\subseteq V}\lambda_A(x_A)\\
+	\et = \lambda_{\varnothing} + \lambda_1(x_1)+\cdots+\lambda_V(x_V)
+\end{align*}
+and the identifiability constraint $\lambda_A(x_A) = 0$ whenever $x_a = 1$ for some $a\in A$.
+\item Consider a $2\times 2$ contingency table with probabilities $\pi_{ij}$. The log-linear parametrisation has
+\begin{alignat*}{2}
+\log\pi_{11} \et = \lambda_{\varnothing} \qquad \et\et\log\pi_{21}  = \lambda_{\varnothing} + \lambda_X \\
+\log\pi_{12} \et = \lambda_{\varnothing} + \lambda_Y \qquad \et\et\log\pi_{22}  = \lambda_{\varnothing} + \lambda_X + \lambda_Y + \lambda_{XY}
+\end{alignat*}
+We can deduce that 
+$$
+\lambda_{XY} = \log\dfrac{\pi_{11}\pi_{22}}{\pi_{21}\pi_{12}}
+$$
+and $e^{\lambda_{XY}}$ is called the \concept{odds ratio} between X and Y.
+\item Let $X_i\sim \mathrm{P}(\mu_i)$ independently, and let $N=\Xsum_{i=1}^k X_i$. Then,
+\begin{align*}
+	N \et \sim \mathrm{P}(\Xsum_i\mu_i)\\
+	(X_1,\cdots,X_k)\t\mid N = n\et \sim \mathrm{Multinom}(n, (\pi_1,\cdots,\pi_k)\t)
+\end{align*}
+where $\pi_i = \dfrac{\mu_i}{\Xsum_j\mu_j}$.
+\item Let $p>0$ be a discrete distribution on $X_V$ with associated log-linear parameters $\lambda_C, C\subseteq V$. The conditional independence $X_a\perpp X_b\mid X_{V\setminus\{a,b\}}$ holds if and only if $\lambda_C = 0$ for all $\{a,b\}\subseteq C\subseteq V$.
+\end{itemize}
+\large{\textbf{Chapter 4\quad Undirected Graphical Models}}
+\begin{itemize}
+\item Let $V$ be a finite set. An \concept{undirected graph} $\mathcal{G}$ is a pair $(V,E)$ where
+\begin{itemize}
+	\item $V$ are the \concept{vertices/nodes}.
+	\item $E\subseteq\{\{i,j\}: i,j\in V, i\neq j\}$ is a set of unordered distinct pairs of $V$ called \concept{edges}.
+\end{itemize}
+We represent graphs by drawing the vertices and then joining pairs of vertices by a line if there is an edge between them.
+\begin{itemize}
+	\item We write $i\sim j$ if $\{i,j\}\in E$, and say they are \concept{adjacent} in the graph. The vertices adjacent to $i$ are called the \concept{neighbours} of $i$, and the set of neighbours is often called the \concept{boundary} of $i$ and denoted by $\mathrm{bd}_{\mathcal{G}}(i)$.
+	\item A \concept{path} in a graph is a sequence of adjacent vertices without repetition. The \concept{length} of a path is the number of edges in it.
+	\item Given a subset of vertices $W\subseteq V$, we define the \concept{induced subgraph} $\mathcal{G}_W$ of $\mathcal{G}$ to be the graph with vertices $W$, and all edges from $\mathcal{G}$ whose endpoints are contained in $W$.
+	\item We say $C\subseteq V$ is \concept{complete} if $i\sim j$ for every $i,j\in C$. A maximal complete set is called a \concept{clique}. The set of cliques in a graph is denoted by $\mathcal{C}(\mathcal{G})$.
+\end{itemize}
+\item Let $A,B,S\subseteq V$. We say that $A$ and $B$ are \concept{separated} by $S$ in $\mathcal{G}$ ($A\perp_s B\mid S[\mathcal{G}]$) if every path from any $a\in A$ to any $b\in B$ contains at least one vertex in $S$. $A$ and $B$ are separated by $S$ (where $S\cap A=S\cap B=\varnothing$) iff $A$ and $B$ are separated by $\varnothing$ in $\mathcal{G}_{V\setminus S}$.
+\item Let $\mathcal{G}$ be a graph with vertices $V$, and let $p$ be a probability distribution over the random variables $X_V$. We say that $p$ satisfies the \concept{pairwise Markov property} for $\mathcal{G}$ if
+$$
+i\not\sim j \mathrm{in} \mathcal{G} \implies X_i\perpp X_j\mid X_{V\setminus\{i,j\}}[p]
+$$
+We say that $p$ satisfies the \concept{global Markov property} for $\mathcal{G}$ if for any disjoint sets $A,B,S$
+$$
+A\perp_s B\mid S \mathrm{in} \mathcal{G} \implies X_A\perpp X_B\mid X_S[p]
+$$
+\end{itemize}
+\end{document}
