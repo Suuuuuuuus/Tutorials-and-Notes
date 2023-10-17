@@ -373,16 +373,53 @@ We represent graphs by drawing the vertices and then joining pairs of vertices b
 	\item We write $i\sim j$ if $\{i,j\}\in E$, and say they are \concept{adjacent} in the graph. The vertices adjacent to $i$ are called the \concept{neighbours} of $i$, and the set of neighbours is often called the \concept{boundary} of $i$ and denoted by $\mathrm{bd}_{\mathcal{G}}(i)$.
 	\item A \concept{path} in a graph is a sequence of adjacent vertices without repetition. The \concept{length} of a path is the number of edges in it.
 	\item Given a subset of vertices $W\subseteq V$, we define the \concept{induced subgraph} $\mathcal{G}_W$ of $\mathcal{G}$ to be the graph with vertices $W$, and all edges from $\mathcal{G}$ whose endpoints are contained in $W$.
-	\item We say $C\subseteq V$ is \concept{complete} if $i\sim j$ for every $i,j\in C$. A maximal complete set is called a \concept{clique}. The set of cliques in a graph is denoted by $\mathcal{C}(\mathcal{G})$.
+	\item We say $C\subseteq V$ is \concept{complete} if $i\sim j$ for every $i,j\in C$. A maximal\footnote{\emph{Maximal} means if one is to add another vertex into the graph, the graph wil no longer be complete. However, graphs in the cliques do not necessarily need to have the same number of vertices.} complete set is called a \concept{clique}. The set of cliques in a graph is denoted by $\mathcal{C}(\mathcal{G})$.
 \end{itemize}
 \item Let $A,B,S\subseteq V$. We say that $A$ and $B$ are \concept{separated} by $S$ in $\mathcal{G}$ ($A\perp_s B\mid S[\mathcal{G}]$) if every path from any $a\in A$ to any $b\in B$ contains at least one vertex in $S$. $A$ and $B$ are separated by $S$ (where $S\cap A=S\cap B=\varnothing$) iff $A$ and $B$ are separated by $\varnothing$ in $\mathcal{G}_{V\setminus S}$.
 \item Let $\mathcal{G}$ be a graph with vertices $V$, and let $p$ be a probability distribution over the random variables $X_V$. We say that $p$ satisfies the \concept{pairwise Markov property} for $\mathcal{G}$ if
 $$
-i\not\sim j \mathrm{in} \mathcal{G} \implies X_i\perpp X_j\mid X_{V\setminus\{i,j\}}[p]
+i\not\sim j \in\mathcal{G} \implies X_i\perpp X_j\mid X_{V\setminus\{i,j\}}[p]
 $$
 We say that $p$ satisfies the \concept{global Markov property} for $\mathcal{G}$ if for any disjoint sets $A,B,S$
 $$
-A\perp_s B\mid S \mathrm{in} \mathcal{G} \implies X_A\perpp X_B\mid X_S[p]
+A\perp_s B\mid S \subseteq\mathcal{G} \implies X_A\perpp X_B\mid X_S[p]
 $$
+\item A distribution $p$ is said to \concept{factorises} according to graph $\mathcal{G}$ if
+$$
+p(x_V) = \prod_{C\in\mathcal{C}(\mathcal{G})}\psi_C(x_C)
+$$
+The functions $\psi_C:\mathbb{R}^{|c|}\rightarrow \mathbb{R}$ are called \concept{potentials}.
+\item If $p(x_V)$ factorises according to $\mathcal{G}$, then $p$ is globally Markov with respect to $\mathcal{G}$.
+\item (\concept{Hammersley-Clifford Theorem}). If $p(x_V)>0$ obeys the pariwise Markove property with respect to $\mathcal{G}$, then $p$ factorises according to $\mathcal{G}$.
+\begin{itemize}
+	\item The followings always hold:
+	\begin{center}
+		factorisation $\Rightarrow$ global Markov $\Rightarrow$ pairwise Markov
+	\end{center}
+	The following holds if $p$ is strictly positive:
+	\begin{center}
+		pariwise Markov $\Rightarrow$ factorisation
+	\end{center}
+\end{itemize}
+\item Given a graph $\mathcal{G}$ with vertices $V=A\cup B\cup S$ where $A,B,S$ are disjoint sets. We say that $(A,S,B)$ consititutes a \concept{decomposition} of $\mathcal{G}$ if:
+\begin{itemize}
+	\item $\mathcal{G}_S$ is complete;
+	\item $A$ and $B$ are separated by $S$ in $\mathcal{G}$
+\end{itemize}
+If $A$ and $B$ are both non-empty, we say the decomposition is \concept{proper}. If not, we say the decomposition is a \concept{prime}.
+\item A graph is decomposable if either it is complete or there is a proper decomposition $(A,S,B)$ and $\mathcal{G}_{A\cup S}$, $\mathcal{G}_{B\cup S}$ are decomposable.
+\item Let $C_1,C_2,\cdots,C_k$ be a collection of subsets. We say that the sequence satisfies the \concept{running intersection property} if $\forall j\geq 2$,
+$$
+C_j\cap\bigcup_{i=1}^{j-1}C_i = C_j\cap C_{\sigma(j)} \qquad \sigma(j)<j
+$$
+\item If $C_1,\cdots,C_k$ satisfy the running intersection property, then there is a graph whose cliques are $\mathcal{C}=\{C_1,\cdots,C_k\}$.
+\item Let $\mathcal{G}$ be an undirected graph. A \concept{cycle} is a sequence of vertices $<v_1,\cdots,v_k>$ for $k\geq 3$ such that there is a path $v_1 - \cdots - v_k$ and an edge $v_k - v_1$. A \concept{chord} on a cycle is any edge between two vertices not adjacent on the cycle. A graph is \concept{chordal} or \concept{triangulated} if whenever there is a cycle of length greater or equal to 4, it contains a chord.
+\item Let $\mathcal{G}$ be an undirected graph. The followings are equivalent:
+\begin{itemize}
+	\item $\mathcal{G}$ is decomposable;
+	\item $\mathcal{G}$ is triangulated;
+	\item Every minimal separator of $a\not\sim b$ is complete;
+	\item The cliques of $\mathcal{G}$ satisfy the running intersection property, starting with $C$.
+\end{itemize}
 \end{itemize}
 \end{document}
