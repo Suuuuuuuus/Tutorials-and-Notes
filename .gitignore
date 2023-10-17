@@ -9,3 +9,4 @@
 */*/*.out
 */*/*.tex.bak
 *.gz
+.DS_Store
