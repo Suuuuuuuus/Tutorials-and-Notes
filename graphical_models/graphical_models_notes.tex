@@ -464,4 +464,39 @@ The algorithm is:
 \end{algorithm}
 The sequence of distributions in IPF converges to MLE $\hat{p}(x_V)$.
 \end{itemize}
+\large{\textbf{Chapter 5\quad Gaussian Graphical Models}}
+\begin{itemize}
+\item Throughout this course, we assume $\mu = 0$. Let $X_V\sim N_p(\mu,\Sigma)$, and $A$ be a $q\times p$ matrix of full rank $q$. Then,
+$$
+AX_V\sim N_q(A\mu , A\Sigma A\t)
+$$
+In particular, for any $U\subseteq V$, we have $X_U\sim N_q(\mu_U,\Sigma_{UU})$.
+
+The MLEs for multivariate Gaussian distribution are 
+$$
+\hat{\mu} = \bar{X}_v = \dfrac{1}{n}\Xsum_{i=1}^n X_V^{(i)} \qquad \hat{\Sigma} = W = \dfrac{1}{n}\Xsum_{i=1}^n\left(X_V^{(i)} - \bar{X}_V\right)\f
+$$
+\item $X_A\perpp X_B$ iff $\Sigma_{AB}=0$. $X\perpp Y$ and $X\perpp Z$ implies $X\perpp Y,Z$ for jointly Gaussian random variables.
+\item Let $\mathcal{G}$ be a graph with a decomposition $(A,S,B)$, and $X_V\sim N_m(0, \Sigma)$ where $m = |V|$. Then, $X_V$ satisfies the global Markov property with respect to $\mathcal{G}$ only if
+$$
+\Sigma^{-1} = \{(\Sigma_{A\cup S, A\cup S})^{-1}\}_{A\cup S, A\cup S} + \{(\Sigma_{B\cup S, B\cup S})^{-1}\}_{B\cup S, B\cup S} - \{(\Sigma_{S,S})^{-1}\}_{S,S}
+$$
+Applying this result to a decomposable graph repeatedly, we see that $X_V$ is Markov with respect to $\mathcal{G}$ iff
+$$
+\Sigma^{-1} = \Xsum_{i=1}^k\{(\Sigma_{C_i,C_i})^{-1}\} - \Xsum_{i=2}^k\{(\Sigma_{S_i,S_i})^{-1}\}_{S_i, S_i}
+$$
+Note this notation: If $M$ is a matrix whose rows and columns are indexed by $A\subseteq V$, we write $\{M\}_{A,A}$ to indicate the matrix indexed by $V$ (i.e. it has $|V|$ rows and columns) whose $A,A-$entries are $M$ and with zeros elsewhere. For example, if $|V|=3$, then
+$$
+M = \left(\begin{matrix}
+a \et b\\
+b \et c
+\end{matrix}\right) \qquad \{M\}_{12,12} = \left(\begin{matrix}
+a \et b \et 0\\
+b \et c \et 0\\
+0 \et 0 \et 0
+\end{matrix}\right)
+$$
+where 12 is used as an abbreviation for $\{1,2\}$ in the subscript.
+\item MLE for a decomposable Gaussian graphical model is the unique $\Sigma$ such that $k_{ij} = 0$ if $i\not\sim j$ and $\sigma_{ij} = w_{ij}$ if $i\sim j$.
+\end{itemize}
 \end{document}
