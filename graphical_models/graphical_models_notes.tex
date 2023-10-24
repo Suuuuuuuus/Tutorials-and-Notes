@@ -16,6 +16,8 @@
 \usepackage{gensymb}
 \usepackage{cancel}
 \usepackage{graphicx}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
 \usepackage{pifont}
 \usepackage[all,pdf]{xy}
 \usepackage{exscale}
@@ -398,7 +400,7 @@ The functions $\psi_C:\mathbb{R}^{|c|}\rightarrow \mathbb{R}$ are called \concep
 	\end{center}
 	The following holds if $p$ is strictly positive:
 	\begin{center}
-		pariwise Markov $\Rightarrow$ factorisation
+		pariwise Markov $\Rightarrow$ factorisation.
 	\end{center}
 \end{itemize}
 \item Given a graph $\mathcal{G}$ with vertices $V=A\cup B\cup S$ where $A,B,S$ are disjoint sets. We say that $(A,S,B)$ consititutes a \concept{decomposition} of $\mathcal{G}$ if:
@@ -408,7 +410,7 @@ The functions $\psi_C:\mathbb{R}^{|c|}\rightarrow \mathbb{R}$ are called \concep
 \end{itemize}
 If $A$ and $B$ are both non-empty, we say the decomposition is \concept{proper}. If not, we say the decomposition is a \concept{prime}.
 \item A graph is decomposable if either it is complete or there is a proper decomposition $(A,S,B)$ and $\mathcal{G}_{A\cup S}$, $\mathcal{G}_{B\cup S}$ are decomposable.
-\item Let $C_1,C_2,\cdots,C_k$ be a collection of subsets. We say that the sequence satisfies the \concept{running intersection property} if $\forall j\geq 2$,
+\item Let $C_1,C_2,\cdots,C_k$ be a collection of subsets. We say that the sequence satisfies the \concept{running intersection property (RIP)} if $\forall j\geq 2$,
 $$
 C_j\cap\bigcup_{i=1}^{j-1}C_i = C_j\cap C_{\sigma(j)} \qquad \sigma(j)<j
 $$
@@ -421,5 +423,45 @@ $$
 	\item Every minimal separator of $a\not\sim b$ is complete;
 	\item The cliques of $\mathcal{G}$ satisfy the running intersection property, starting with $C$.
 \end{itemize}
+\item A \concept{forest} is a graph that contains no cycles. If a forest is connected we call it a \concept{tree}.
+\item Let $\mathcal{G}$ be a decomposable graph, and let $C_1,\cdots,C_k$ be an ordering of the cliques which satisfies RIP. Define the $j-$th \concept{separator set} for $j\geq 2$ as
+$$
+S_j \equiv C_j\cap \bigcup_{i=1}^{j-1} C_i = C_j\cap C_{\sigma(j)}
+$$
+by convention $S_1 = \varnothing$.
+\item Let $\mathcal{G}$ be a graph with decomposition $(A,S,B)$, and let $p$ be a distribution, then $p$ factorises with respect to $\mathcal{G}$ iff its marginals $p(x_{A\cup S})$ and $p(x_{B\cup S})$ factorise according to $\mathcal{G}_{A\cup S}$ and $\mathcal{G}_{B\cup S}$, and
+$$
+p(x_V) \cdot p_{x_S} = p(x_{A\cup S})\cdot p(x_{B\cup S})
+$$
+\item Let $\mathcal{G}$ be a decomposable graph with cliques $C_1, \cdots, C_k$, then $p$ factorises with respect to $\mathcal{G}$ iff
+$$
+p(x_V) = \prod_{i=1}^k p(x_{C_i\setminus S_i}\mid x_{S_i}) = \prod_{i=1}^k\dfrac{p(x_{C_i})}{p(x_{S_i})}
+$$
+\item Let $\mathcal{G}$ be an undirected graph, and suppose we have counts $n(x_V)$. Then the MLE $\hat{p}$ under the set of distributions that are Markov to $\mathcal{G}$ is the unique element in which
+$$
+n\cdot\hat{p}(x_C) = n(x_C)
+$$
+for each clique $C\in \mathcal{C}(\mathcal{G})$.
+\item The \concept{iterative proportional fitting (IPF)/iterative proportional scaling (IPS)} algorithm starts with a discrete distribution that satisfies the Markov property for the graph $\mathcal{G}$ (usually pick uniform distribution), and then iteratively fixes each margin $p(x_C)$ to match the required distribution using the update step:
+\begin{align*}
+	p^{(t+1)}(x_V) \et = p^{(t)}(x_V)\cdot\dfrac{\hat{p}(x_C)}{p^{(t)}(x_C)} \\
+	\et = p^{(t)}(x_{V\setminus C}\mid x_C)\cdot\hat{p}(x_C)
+\end{align*}
+The algorithm is:
+\begin{algorithm}
+\caption{IPF algorithm}
+\begin{algorithmic}
+\Function {IPF}{collection of consistent margins $q(x_{C_i})$ for sets $C_1,\cdots,C_k$}
+\State set $p(x_V)$ to uniform distribution;
+\While{$\max_i\max_{x_{C_i}}|p(x_{C_i}) - q(x_{C_i})| > \mathrm{tol}$}
+\For{$i$ in $1,\cdots,k$}
+    \State update $p(x_V)$ to $p(x_{V\setminus C_i}\mid x_{C_i})\cdot q(x_{C_i})$;
+\EndFor
+\EndWhile
+\State \Return {distribution $p$ with margins $p(x_{C_i})=q(x_{C_i})$}
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+The sequence of distributions in IPF converges to MLE $\hat{p}(x_V)$.
 \end{itemize}
 \end{document}
