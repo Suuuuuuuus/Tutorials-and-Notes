@@ -204,7 +204,7 @@ showstringspaces=false
 \newcommand\bashinline[1]{{\bashstyle\lstinline!#1!}}
 %%%%%
 \newcommand{\dollar}{\mbox{\textdollar}}
-\newcommand{\perpp}{\ensuremath{\perp\!\!\!\!\perp}}
+\newcommand{\perpp}{\ensuremath{\perp\!\!\!\!\!\perp}}
 \newcommand{\dps}[1]{\ensuremath{\displaystyle{#1}}}
 \newcommand\ffrac[2]{\ensuremath{\dfrac{\;#1\;}{\;#2\;}}}
 \newcommand{\comma}{\, \; \;\mathclap{\text{，}}} %用于mathmode中的逗号
@@ -568,5 +568,46 @@ $$
 	\item $p$ is globally Markov with respect to $\mathcal{G}$;
 	\item $p$ is locally Markov with respect to $\mathcal{G}$.
 \end{itemize}
+E.g.: Let $X_V$ be a multinomial random vector with probabilities $p(x_V)$, then the log-likelihood if $p$ factorises according to a DAG $\mathcal{G}$ is 
+\begin{align*}
+	l(p; n) \et = \Xsum_{x_v\in X_V} n(x_v)\log p(x_v)\\
+	\et = \Xsum_{x_v\in X_V}n(x_V)\Xsum_{i=1}^m \log p(x_i\mid x_{\mathrm{pa}(i)})\\
+	\et = \Xsum_{i=1}^m\Xsum_{x_v\in X_V} n(x_V)\log p(x_i\mid x_{\mathrm{pa}(i)})\\
+	\et = \Xsum_{i=1}^m\Xsum_{x_{i\cup \mathrm{pa}(i)}\in X_{\{i\}\cup\mathrm{pa}(i)}}\log p(x_i\mid x_{\mathrm{pa}(i)})\Xsum_{x_{V\setminus(\{i\}\cup\mathrm{pa}(i))} \in X_{V\setminus(\{i\}\cup\mathrm{pa}(i))}} n(x_V)\\
+	\et = \Xsum_{i=1}^m\Xsum_{x_{\{i\}\cup\mathrm{pa}(i)}}\log p(x_i\mid x_{\mathrm{pa}(i)})
+\end{align*}
+The MLE can then be calculated:
+$$
+\hat{p}(x_i\mid x_{\mathrm{pa}(i)}) = \dfrac{n(x_i, x_{\mathrm{pa}(i)})}{n(x_{\mathrm{pa}(i)})}
+$$
+For a Bayesian, one may have parameters $\Theta_i$ for each $p(x_i\mid x_{\mathrm{pa}(i)})$. If we choose independent priors, then
+\begin{align*}
+	\pi(\theta\mid n) \et \propto \pi(\theta)L(\theta\mid n)\\
+	\et = \prod_{i=1}^m \pi(\theta_i)f(\theta_i; n(x_i,x_{\mathrm{pa}(i)}))
+\end{align*}
+This is to say that
+$$
+\theta_i\perpp X_{V\setminus (\{i\}\cup\mathrm{pa}(i))},\theta_{V\setminus\{i\}}\mid X_i, X_{\mathrm{pa}(i)}
+$$
+\item For undirected graphs, missing edge induces an independence, hence all graphs give distinct models. If two graphs $\mathcal{G}$ and $\mathcal{G}'$ induce the same statistical model, we say that they are \concept{Markov equivalent}.
+E.g.: These models are Markov equivalent:
+\begin{itemize}
+	\item $X\rightarrow Z\rightarrow Y$:
+	$$
+		p(x)p(z\mid x)p(y\mid z) \Leftrightarrow X\perpp Y\mid Z	
+	$$
+	\item $X\leftarrow Z\leftarrow Y$.
+	\item $X\leftarrow Z\rightarrow Y$:
+	$$
+	    p(z)p(x\mid z)p(y\mid z) \Leftrightarrow X\perpp Y\mid Z
+	$$
+	\item $X-Z-Y$:
+	$$
+		p(x,y,z) = \psi_{XZ}(x,z)\cdot\psi_{YZ}(y,z) \Leftrightarrow X\perpp Y\mid Z	
+	$$
+\end{itemize}
+\item Given a DAG $\mathcal{G}$, we define its \concept{skeleton} as the undirected graph $\mathrm{skel}(\mathcal{G})$ with the same nodes/vertices and the same adjacencies as $\mathcal{G}$.
+\item Let $\mathcal{G},\mathcal{G}'$ be graphs with different skeletons (DAG or undirected). Then, $\mathcal{G}$ and $\mathcal{G}'$ are not Markov equivalent. 
+\item Directed graphs $\mathcal{G}$ and $\mathcal{G}'$ are Markov equivalent iff they have the same skeleton and $v$-structures.
 \end{itemize}
 \end{document}
