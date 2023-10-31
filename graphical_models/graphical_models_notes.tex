@@ -499,4 +499,74 @@ $$
 where 12 is used as an abbreviation for $\{1,2\}$ in the subscript.
 \item MLE for a decomposable Gaussian graphical model is the unique $\Sigma$ such that $k_{ij} = 0$ if $i\not\sim j$ and $\sigma_{ij} = w_{ij}$ if $i\sim j$.
 \end{itemize}
+\large{\textbf{Chapter 6\quad Directed Graphs}}
+\begin{itemize}
+\item A \concept{directed graph} $\mathcal{G}$ is a pair $(V,D)$ where
+\begin{itemize}
+	\item $V$ is a set of \concept{vertices}.
+	\item $D\subseteq\{(i,j): i,j\in V, i\neq j\}$ is a set of ordered distinct pairs of $V$ called \concept{edges}. If $(i,j)\in D$, we write $i\rightarrow j$.
+\end{itemize}
+We represent graphs by drawing the vertices and then joining pairs of vertices by a directed line if there is an edge between them.
+\begin{itemize}
+	\item A \concept{path} in a graph is a sequence of adjacent vertices without repetition. The \concept{length} of a path is the number of edges in it. A path with length 0 is a single vertex. The \concept{path} is directed if all the arrows point away from the start.
+	\item A \concept{directed cycle} is a directed path from $i$ to $j \neq i$, together with $j\rightarrow i$.
+	\item Graphs that contain no directed cycles are called \concept{acyclic}, or \concept{directed acyclic graphs (DAGs)}.
+	\item Note the following concepts:
+	$$
+		i\rightarrow j \quad \begin{cases}
+			i \in \mathrm{pa}_\mathcal{G}(j) \et i \mathrm{\;\, is\;\, a\;\, \concept{parent}\;\, of\;\, } j\\
+			j \in \mathrm{ch}_{\mathcal{G}}(i) \et j \mathrm{\;\, is\;\, a\;\, \concept{child}\;\, of\;\, }i
+		\end{cases}
+	$$
+	$$
+		a\rightarrow\cdots\rightarrow b \mathrm{\;\, or \;\, a = b} \begin{cases}
+		a \in \mathrm{an}_\mathcal{G}(b) \et a \mathrm{\;\, is\;\, an \;\, \concept{ancestor} \;\, of\;\,} b \\
+		b \in \mathrm{de}_\mathcal{G}(a) \et b \mathrm{\;\, is\;\, a\;\, \concept{descendant} \;\, of \;\,} a
+		\end{cases}
+	$$
+	If $w\not\in$de$_\mathcal{G}(v)$, then $w$ is a \concept{non-descendant} of $v$:
+	$$
+		\mathrm{nd}_\mathcal{G}(v) = V\setminus \mathrm{de}_\mathcal{G}(v)	
+	$$
+	\item If the graph is acyclic, we can find a \concept{topological ordering} (i.e. one in which no vertex comes before any of its parents). Given $x_i$, define
+	$$
+		\mathrm{pre}(i) = \{x_1,\cdots , x_{i-1}\}	
+	$$
+\end{itemize}
+\item For any multivariate distribution, we can factorise it as
+$$
+p(x_V) = \prod_{i=1}^m p(x_i\mid x_{i,\cdots ,x_{i-1}})
+$$
+Let $\mathcal{G}$ be a DAG. We say that $p(x_V)$ \concept{factorises} according to $\mathcal{G}$ if
+$$
+p(x_V) = \prod_{i=1}^m p(x_i\mid x_{\mathrm{pa}_\mathcal{G}}(i))
+$$
+Given a topological ordering, we require that
+$$
+p(x_i\mid x_{1,\cdots ,x_{i-1}}) = p(x_i\mid x_{\mathrm{pa}_\mathcal{G}(i)})
+$$
+which is to say $X_i\perpp X_{\mathrm{pre}(i)\setminus \mathrm{pa}(i)}\mid X_{\mathrm{pa}(i)}$. Note that the ordering is arbitrary, let $\mathrm{pre}(i) = \mathrm{nd}_\mathcal{G}(i)$ and obtain
+$$
+	X_i\perpp X_{\mathrm{nd}(i)\setminus \mathrm{pa}(i)}\mid X_{\mathrm{pa}(i)} \qquad \forall i\in V
+$$
+Distributions that have these independences satisfy the \concept{local Markov property}.
+\item A set of vertices is \concept{ancestral} if it contains all of its own ancestors.
+\item Let $\mathcal{G}$ be a DAG with an ancestral set $A$. Then, $p(x_V)$ factorises according to $\mathcal{G}$ only if $p(x_A)$ factorises according to $\mathcal{G}_A$.
+\item A \concept{$v$-structure/unshielded collider} is a triple $i\rightarrow k\leftarrow j$ where $i\not\sim j$.
+\item The \concept{moral graph} for a DAG $\mathcal{G}$ is an undirected graph $\mathcal{G}^m$ such that 
+$$
+i\sim j \; [\mathcal{G}^m] \Leftrightarrow \begin{cases}
+i\sim j \; [\mathcal{G}] \\
+i\rightarrow k\leftarrow j \; [\mathcal{G}]
+\end{cases}
+$$
+\item If $p(x_V)$ factorises according to a DAG $\mathcal{G}$, then it also factorises according to $\mathcal{G}^m$.
+\item We say that a probability density $p(x_V)$ satisfies the \concept{global Markov property} for a DAG $\mathcal{G}$ if wherever $A\perp_s B\mid C$ in $(\mathcal{G}_{\mathrm{an}(A\cup B\cup C)})^m$ we have $X_A\perpp X_B\mid X_C$ under $p$.
+\item Let $\mathcal{G}$ be a DAG and $p(x_V)$ be a probability density. Then, the followings are equivalent:
+\begin{itemize}
+	\item $p$ factorises according to $\mathcal{G}$;
+	\item $p$ is globally Markov with respect to $\mathcal{G}$;
+	\item $p$ is locally Markov with respect to $\mathcal{G}$.
+\end{itemize}
+\end{itemize}
 \end{document}
