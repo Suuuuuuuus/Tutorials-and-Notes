@@ -681,5 +681,6 @@ so $\psi_Y'$ and $\psi_Y$ are the same. Hence, the collection step leaves $\psi_
 \end{align*}
 Hence, after performing both steps, each potential is the marginal distribution corresponding to those variables.
 \item In junction graphs that are not trees, it is still possible to perform message passing, but convergence is not guranteed. This is known as \concept{loopy belief propagation}, and is a topic of current research.
+\item Back to the lung cancer example. Suppose we know a person smokes, then we replace $p(s)$ with $\mathbbm{1}_{\{s=1\}}$. Then, we can run a DISTRIBUTE step to obtian other tables conditional on being a smoker. Suppose we have multiple conditions, it is necessary to DISTRIBUTE once for each condition.
 \end{itemize}
 \end{document}
