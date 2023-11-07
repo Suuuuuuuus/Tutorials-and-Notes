@@ -609,5 +609,77 @@ E.g.: These models are Markov equivalent:
 \item Given a DAG $\mathcal{G}$, we define its \concept{skeleton} as the undirected graph $\mathrm{skel}(\mathcal{G})$ with the same nodes/vertices and the same adjacencies as $\mathcal{G}$.
 \item Let $\mathcal{G},\mathcal{G}'$ be graphs with different skeletons (DAG or undirected). Then, $\mathcal{G}$ and $\mathcal{G}'$ are not Markov equivalent. 
 \item Directed graphs $\mathcal{G}$ and $\mathcal{G}'$ are Markov equivalent iff they have the same skeleton and $v$-structures.
+\item An undirected graph is Markov equivalent to a directed graph iff it is decomposable.
+\end{itemize}
+\large{\textbf{Chapter 7\quad Junction Trees and Message Passing}}
+\begin{itemize}
+\item A connected, undirected graph without any cycles is called a \concept{tree}, denoted by $\mathcal{T}$. Let $\mathcal{V}$ be vertices contained in the power set of $V$, that is, each vertex of $\mathcal{T}$ is a subset of $V$. We say that $\mathcal{T}$ is a \concept{junction tree} if whenever we have $C_i,C_j\in \mathcal{V}$ with $C_i\cap C_j\neq\varnothing$, there is a (unique) path $\pi$ in $\mathcal{T}$ from $C_i$ to $C_j$ such that for every vertex $C$ on the path, $C_i\cap C_j\subseteq C$.
+\item If $\mathcal{T}$ is a junction tree. then its vertices $\mathcal{V}$ can be ordered to satisfy the r.i.p. Conversely, if a collection of sets satisfies the r.i.p., they can be arranged into a junction tree. A tree that does not satisfy r.i.p. is sometimes called a \concept{clique tree}.
+\item We will associate each node $C$ in our junction tree with a potential $\psi_C(x_C)\geq 0$, which is a function over the variables in the corresponding set. We say that two potentials $\psi_C,\psi_D$ are \concept{consistent} if 
+$$
+\Xsum_{x_{C\setminus D}}\psi_C(x_C) = f(x_{C\cap D}) = \Xsum_{x_{D\setminus C}}\psi_D(x_D)
+$$
+That is, the margins of $\psi_C$ and $\psi_D$ over $C\cap D$ are the same.
+\item Let $C_1,\cdots,C_k$ satisfy the r.i.p. with separator sets $S_2,\cdots,S_k$, and let
+$$
+p(x_V) = \prod_{i=1}^k\dfrac{\psi_{C_i}(x_{C_i})}{\psi_{S_i}(x_{S_i})}
+$$
+where $S_1=\varnothing$ and $\psi_\varnothing = 1$ by convention. Then, each $\psi_{C_i}(x_{C_i})=p(x_{C_i})$ and $\psi_{S_i}(x_{S_i}) = p(x_{S_i})$ iff each pair of potentials is consistent.
+\item If a graph is not decomposable, then we can triangulate it by adding edges.
+\item Suppose that two cliques $C$ and $D$ are adjacent in the junction tree, with a separator set $S=C\cap D$. An \concept{update} from $C$ to $D$ consists of replacing $\psi_S$ and $\psi_D$ with the following:
+$$
+\psi_S'(x_S) = \Xsum_{x_{C\setminus S}}\psi_C(x_C) \qquad \psi_D'(x_D) = \dfrac{\psi_S'(x_S)}{\psi_S(x_S)}\psi_D(x_D)
+$$
+This operation is also known as \concept{message passing}, with the message $\psi_S'(x_S)$ being passed from $C$ to $D$. We note three important points about this updating step:
+\begin{itemize}
+	\item After updating, $\psi_C$ and $\psi_S'$ are consistent.
+	\item If $\psi_D$ and $\psi_S$ are consistent, then so are $\psi'_D$ and $\psi_S'$.
+	\item The product over all clique potentials
+	$$
+		\dfrac{\prod_{C\in \mathcal{C}}\psi_C(x_C)}{\prod_{S\in \mathcal{S}}\psi_S(x_S)}	
+	$$
+	is unchanged: the only altered terms are $\psi_D$ and $\psi_S$, and by definition of $\psi_D'$ we have
+	$$
+		\dfrac{\psi_D'(x_D)}{\psi_S'(x_S)} = \dfrac{\psi_D(x_D)}{\psi_S(x_S)}	
+	$$
+\end{itemize}
+Hence, updating preserves the joint distribution and does not upset margins that are already consistent. The junction tree algorithm is a way of updating all the margins such that, when it is complete, they are all consistent.
+\item Let $\mathcal{T}$ be a tree. Given any node $t\in\mathcal{T}$, we can root the tree at $t$, and replace it with a directed graph in which all the edges point away from $t$. The \concept{junction tree algorithm} involves messages being passed from the edge of the junction tree (the leaves) towards a chosen root (the \concept{collection phase}), and then being sent away from that root back down to the leaves (the \concept{distribution} phase). Once these steps are completed, the potentials will all be consistent. This process is also called \concept{brief propagation}.
+\begin{algorithm}
+\caption{Collect and distribute steps of the junction tree algorithm}
+\begin{algorithmic}
+\Function {COLLECT}{rooted tree $\mathcal{T}$, potentials $\psi_t$}
+\State let $1<\cdots <k$ be a topological ordering of $\mathcal{T}$
+\For{$t$ in $k,\cdots,2$}
+    \State send message from $\psi_t$ to $\psi_{\sigma(t)}$;
+\EndFor
+\State \Return {updated potentials $\psi_t$}
+\EndFunction
+\Function {DISTRIBUTE}{rooted tree $\mathcal{T}$, potentials $\psi_t$}
+\State let $1<\cdots <k$ be a topological ordering of $\mathcal{T}$
+\For{$t$ in $2,\cdots,k$}
+    \State send message from $\psi_{\sigma(t)}$ to $\psi_t$;
+\EndFor
+\State \Return {updated potentials $\psi_t$}
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+\item Let $\mathcal{T}$ be a junction tree with potentials $\psi_{C_i}(x_{C_i})$. After running the junction tree algorithm, all pairs of potentials will be consistent.
+\item In practice, message passing is often done in parallel, and it is not hard to prove that if all potentials update simultaneously, then the potentials will converge to a consistent solution in at most $d$ steps, where $d$ is the width (the length of the longest path) of the tree.
+\item E.g.: Suppose we have just two tables, $\psi_{XY}$ and $\psi_{YZ}$ arranged in the juntion tree representing a distribution in which $X\perpp Z\mid Y$. We can initialise by setting
+$$
+\psi_{XY}(x,y) = p(x\mid y) \qquad \psi_{YZ}(y,z) = p(y, z) \qquad \psi_Y(y) = 1
+$$
+so that $p(x,y,z) = p(y,z)\cdot p(x\mid y)=\dfrac{\psi_{YZ}\psi_{XY}}{\psi_Y}$. Now, we could pick $YZ$ as the root node of our tree, so the collection step consists of replacing 
+$$
+\psi_Y'(y) = \Xsum_x\psi_{XY}(x,y) = \Xsum_xp(x\mid y) = 1
+$$
+so $\psi_Y'$ and $\psi_Y$ are the same. Hence, the collection step leaves $\psi_Y$ and $\psi_{YZ}$ unchanged. The distribution step consists of 
+\begin{align*}
+	\psi_Y''(y) \et = \Xsum_z\psi_{YZ}(y,z) = \Xsum_zp(y,z) = p(y)\\
+	\psi_{XY}'(x,y) \et = \dfrac{\psi_Y''(y)}{\psi_Y(y)}\psi_{XY}(x,y) = \dfrac{p(y)}{1}p(x\mid y) = p(x,y)
+\end{align*}
+Hence, after performing both steps, each potential is the marginal distribution corresponding to those variables.
+\item In junction graphs that are not trees, it is still possible to perform message passing, but convergence is not guranteed. This is known as \concept{loopy belief propagation}, and is a topic of current research.
 \end{itemize}
 \end{document}
