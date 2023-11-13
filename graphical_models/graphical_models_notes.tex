@@ -683,4 +683,33 @@ Hence, after performing both steps, each potential is the marginal distribution 
 \item In junction graphs that are not trees, it is still possible to perform message passing, but convergence is not guranteed. This is known as \concept{loopy belief propagation}, and is a topic of current research.
 \item Back to the lung cancer example. Suppose we know a person smokes, then we replace $p(s)$ with $\mathbbm{1}_{\{s=1\}}$. Then, we can run a DISTRIBUTE step to obtian other tables conditional on being a smoker. Suppose we have multiple conditions, it is necessary to DISTRIBUTE once for each condition.
 \end{itemize}
+\large{\textbf{Chapter 8\quad Causal Inference}}
+\begin{itemize}
+\item A pair $(\mathcal{G}, p)$ is said to be \concept{causal} if
+$$
+p(x_{V\setminus A}\mid \mathrm{do}(x_A)) = \prod_{i\in V\setminus A}p(x_i\mid x_{\mathrm{pa}(i)}) \qquad \forall A\subseteq V, x_v\in \mathcal{X}_V
+$$
+Here, "\emph{do}" represents an intervention to set $X_A = x_A$. If we interwene on $X$, we delete all incoming edges in graph $\mathcal{G}$. Note that it is neither a conditional nor an ordinary marginal distribution.
+\item Example: Let $Z\rightarrow X\rightarrow Y, Z\rightarrow Y$ be the DAG. We have
+$$
+p(y\mid\mathrm{do}(x)) = \Xsum_{z\in\mathcal{Z}} p(z)p(y\mid x,z)
+$$
+Note that
+\begin{align*}
+	p(y\mid\mathrm{do}(x)) \et = \Xsum_z p(z)p(y\mid z,x)\\
+	\et \neq \Xsum_z p(z\mid x)p(y\mid z,x)\\
+	\et = p(y\mid x)
+\end{align*}
+This formula is called an \concept{adjustment} or \concept{standardisation} or the \concept{$g$-formula}.
+\item Later we usually denote $T$ to be \emph{treatment} or \emph{intervention} and $Y$ to be \emph{outcome}. The following holds:
+$$
+p(y\mid\mathrm{do}(t)) = \Xsum_{x_{\mathrm{pa}(t)}}p(x_{\mathrm{pa}(t)})p(y\mid t, x_{\mathrm{pa}(t)})
+$$
+\item Let $\mathcal{G}$ be a DAG and $\pi$ a path in $\mathcal{G}$. An \concept{internal vertex} is any that does not begin or end $\pi$. Such a vertex $c$ is a \concept{collider} if both edges on $\pi$ contained and point to $c$ (namely, $\rightarrow c\leftarrow$). Otherwise it is a \concept{non-collider}.
+\item A path form $a$ to $b$ in $\mathcal{G}$ is \concept{open} conditional on some set $C\subseteq V\setminus\{a,b\}$, if 
+\begin{itemize}
+	\item Every collider is in $\mathrm{an}_\mathcal{G}(C) = \bigcup_{i\in C}\mathrm{an}_\mathcal{G}(i)$ and
+	\item No non-collider is in $C$.
+\end{itemize}
+\end{itemize}
 \end{document}
