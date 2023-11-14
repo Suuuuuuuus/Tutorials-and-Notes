@@ -711,5 +711,21 @@ $$
 	\item Every collider is in $\mathrm{an}_\mathcal{G}(C) = \bigcup_{i\in C}\mathrm{an}_\mathcal{G}(i)$ and
 	\item No non-collider is in $C$.
 \end{itemize}
+If not, $\pi$ is \concept{blocked} given $C$.
+\item We say that vertices $a,b\in V$ are \concept{$d$-separated} by $C\subseteq V\setminus\{a,b\}$ if every path from $a$ to $b$ is blocked by $C$. This extends to sets: if every $a\in A$ is $d$-separated from every $b\in B$ (by $C$), we say $A$ and $B$ are $d$-separated by $C$, denoted by $A\perp_d B\mid C\; [\mathcal{G}]$.
+\item Let $\mathcal{G}$ be a DAG with disjoint subsets $A,B,C$ as vertices. Then, $A\perp_d B\mid C$ in $\mathcal{G}$ iff $A\perp_s B\mid C$ in $(\mathcal{G}_{\mathrm{an}(A\cup B\cup C)})^m$.
+\item Any open path from $a$ to $b$ given $C$ is contained in $\mathrm{an}_\mathcal{G}(\{a.b\}\cup C)$.
+\item Given a distribution $p(x_V)$, we say that $C$ is a \concept{valid adjustment set} for the causal effect of $T$ on $Y$ if
+$$
+p(y\mid \mathrm{do}(t)) = \Xsum_{x_c\in \mathcal{X}_C} p(x_c)p(y\mid t, x_c)
+$$
+\item If we are interested in the total effect of $T$ on $Y$, then we define the \concept{causal nodes} as the set of vertices on any causal path (directed path) from $T$ to $Y$ other than $T$, denoted by $\mathrm{cn}_\mathcal{G}(T\rightarrow Y)$.
+\item The \concept{forbidden nodes} are those that are descendants of any causal node as well as the treatment, denoted by $\mathrm{forb}_\mathcal{G}(T\rightarrow Y)$.
+\item We say that $C$ satisfies the \concept{generalised adjustment criterion} with respect to $(t,y)$ if:
+\begin{itemize}
+	\item $C$ contains no forbidden nodes $(\mathrm{forb}_\mathcal{G}(T,Y))$;
+	\item $C$ blocks all non-causal paths from $T$ to $Y$.
+\end{itemize}
+\item Let $C$ satisfy the generalised adjustment criterion with respect to $(t,y)$, then so does $B = C\cap \mathrm{nd}_\mathcal{G}(t)$.
 \end{itemize}
 \end{document}
