@@ -714,7 +714,7 @@ $$
 If not, $\pi$ is \concept{blocked} given $C$.
 \item We say that vertices $a,b\in V$ are \concept{$d$-separated} by $C\subseteq V\setminus\{a,b\}$ if every path from $a$ to $b$ is blocked by $C$. This extends to sets: if every $a\in A$ is $d$-separated from every $b\in B$ (by $C$), we say $A$ and $B$ are $d$-separated by $C$, denoted by $A\perp_d B\mid C\; [\mathcal{G}]$.
 \item Let $\mathcal{G}$ be a DAG with disjoint subsets $A,B,C$ as vertices. Then, $A\perp_d B\mid C$ in $\mathcal{G}$ iff $A\perp_s B\mid C$ in $(\mathcal{G}_{\mathrm{an}(A\cup B\cup C)})^m$.
-\item Any open path from $a$ to $b$ given $C$ is contained in $\mathrm{an}_\mathcal{G}(\{a.b\}\cup C)$.
+\item Any open path from $a$ to $b$ given $C$ is contained in $\mathrm{an}_\mathcal{G}(\{a,b\}\cup C)$.
 \item Given a distribution $p(x_V)$, we say that $C$ is a \concept{valid adjustment set} for the causal effect of $T$ on $Y$ if
 $$
 p(y\mid \mathrm{do}(t)) = \Xsum_{x_c\in \mathcal{X}_C} p(x_c)p(y\mid t, x_c)
@@ -727,5 +727,13 @@ $$
 	\item $C$ blocks all non-causal paths from $T$ to $Y$.
 \end{itemize}
 \item Let $C$ satisfy the generalised adjustment criterion with respect to $(t,y)$, then so does $B = C\cap \mathrm{nd}_\mathcal{G}(t)$.
+\item If any $d\in\mathrm{de}_\mathcal{G}(t)\cap C$, then either $d\perp_d t\mid C\setminus\mathrm{de}_\mathcal{G}(d)$ or $d\perp_d y\mid (\{t\}\cup C)\setminus \mathrm{de}_\mathcal{G}(d)$. We refer to $B = C\cap \mathrm{nd}_\mathcal{G}(t)$ as a \concept{back-door adjustment set}.
+\item If $C$ satisfies the generalised adjustment criterion for $(t,y)$, then
+$$
+\Xsum_{x_c}p(x_c)p(y\mid t, x_C) = \Xsum_{x_B}p(x_B)p(y\mid t, x_B)
+$$
+\item Suppose $C$ satisfies the generalised adjustment criterion with respect to $(t,y)$, then it is also a valid adjustment set for that pair.
+\item Let $X_V$ be a multivariate vector of random variables with covariance $\Sigma_{VV}$. We denote the coefficients of $X_y = Y$ on $X_C$ by $\beta_{C_y}$ and $\beta_{t,y\cdot C'}$ where $C\ = C\setminus\{t\}$.
+\item An increase of one unit in $t$ will increase the expectation of $Y$ by.
 \end{itemize}
 \end{document}
