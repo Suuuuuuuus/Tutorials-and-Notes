@@ -276,6 +276,7 @@ showstringspaces=false
 \newcommand{\XY}{\ensuremath{(X\comma Y)}}
 \newcommand{\Cov}{\ensuremath{\mathrm{Cov}}}
 \newcommand{\cip}{\tikz[baseline=-0.55ex]\draw[-stealth] (0,0) -- (2mm,0) node[above]{$\;\;P$}--+ (4mm,0);\;} %依概率收敛
+\newcommand{\cid}{\tikz[baseline=-0.55ex]\draw[-stealth] (0,0) -- (2mm,0) node[above]{$\;\;d$}--+ (4mm,0);\;} %依分布收敛
 \newcommand{\seriesn}{\ensuremath{\dps{\Xsum_{i=1}^n}}} %1开始到n的连续求和
 \begin{document}
 %\kaishu
@@ -734,6 +735,38 @@ $$
 $$
 \item Suppose $C$ satisfies the generalised adjustment criterion with respect to $(t,y)$, then it is also a valid adjustment set for that pair.
 \item Let $X_V$ be a multivariate vector of random variables with covariance $\Sigma_{VV}$. We denote the coefficients of $X_y = Y$ on $X_C$ by $\beta_{C_y}$ and $\beta_{t,y\cdot C'}$ where $C\ = C\setminus\{t\}$.
-\item An increase of one unit in $t$ will increase the expectation of $Y$ by.
+\item $X_V$ has a distribution Markov with respect to $\mathcal{G}$ and multivariate Gaussian iff
+$$
+X_i = \Xsum_{w\in\mathrm{pa}(i)}b_{iw}X_w + \epsilon_i \qquad \epsilon_i\sim N(0, \sigma_i\f), \; \mathrm{iid}
+$$
+\item If $(\mathcal{G}, p)$ is causal, then we call these equation \concept{structural}, and $p$ a \concept{structural equation model}.
+$$
+X_V = (I-B)^{-1}\epsilon_V \sim N_m(0, \Sigma) \qquad \Sigma = (I-B)^{-1}D(I-B)^{-T}
+$$
+where $D$ is diagonal. Note that we have
+$$
+(I-B)^{-1} = (I + B + B\f + \cdots + B^{m-1})
+$$
+Furthermore, $(B\f)_{ij}$ is the sum of all directed paths $j\rightarrow k\rightarrow i$ of length 2, $(B^l)_{ij}$ is the sum of all directed paths from $j$ to $i$ with length $l$:
+\begin{align*}
+	(B\f)_{ij} \et = \Xsum_{k=1}^m b_{ik}b_{kj} \\
+	(B^l)_{ij} \et = \Xsum_{k_1,\cdots , k_l}b_{ik}b_{k_1k_2},\cdots,b_{k_lj}
+\end{align*}
+Hence, $B^l = 0$ for $l>m-1$.
+\item Let $\mathcal{G}$ be a DAG with variables $V$. A \concept{trek} from $i$ to $j$ with \concept{source} $k$ is a pair $(\pi_l, \pi_r)$ where $\pi_l$ is a directed path from $k$ to $i$, and $\pi_r$ is a directed path from $k$ to $j$. The two paths are known as the left and right side of the trek. Thus, a trek is essentially a path without colliders, except that we do allow repetition of vertices.
+\item Given a trek $\tau = (\pi_l, \pi_r)$ with source $k$, define the \concept{trek covariance} as
+$$
+c(\tau) = d_{kk}\prod_{i\rightarrow j\in\pi_l}b_{ji}\prod_{i\rightarrow j\in\pi_r} b_{ji}
+$$
+Note that $d_{kk}\neq 1$ if $D\neq I$.
+\item Let $\Sigma = (I-B)^{-1}D(I-B)^{-T}$ be a covariance matrix that is Markov with respect to a DAG $\mathcal{G}$. Then,
+$$
+\sigma_{ij} = \Xsum_{\tau\in\mathcal{T}_{ij}}c(\tau)
+$$
+where $\mathcal{T}_{ij}$ is the set of treks from $i$ to $j$. This is known as the \concept{trek rule}.
+\item Let $\tilde{\beta}_{C_y} = (\tilde{\beta}_{cy\cdot C\setminus\{c\}})_{c\in C}$ be the vector of regression coefficients from regressing $Y\in\mathbb{R}^n$ on $X_c\in\mathbb{R}^{n\times q}$ ($|C| = q$). Then
+$$
+\sqrt{n}(\tilde{\beta}_{C_y}-\beta_{C_y}) \cid N_q(0, (\Sigma_{CC})^{-1}\Sigma_{yy\cdot C})
+$$ 
 \end{itemize}
 \end{document}
