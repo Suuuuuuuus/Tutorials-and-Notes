@@ -773,7 +773,25 @@ $$
 	\dfrac{\sigma_{yy\cdot tC}}{\sigma_{tt\cdot C}}\leq\dfrac{\sigma_{yy\cdot tD}}{\sigma_{tt\cdot D}}
 $$
 For good precision on regression, we want the residual variance in $Y$ to be smaller and residual variance in $T$ to be larger.
-\item The \emph{optimal adjustment set} is $O_\mathcal{G}(T\rightarrow Y) = \mathrm{pa}_\mathcal{G}(\mathrm{cn}_\mathcal{G}(T\rightarrow Y))\setminus (\mathrm{cn}_\mathcal{G}(T\rightarrow Y)\cup \{T\})$.
+\item The \emph{optimal adjustment set} is 
+\begin{align*}
+O \et = O_\mathcal{G}(T\rightarrow Y) \\
+\et = \mathrm{pa}_\mathcal{G}(\mathrm{cn}_\mathcal{G}(T\rightarrow Y))\setminus (\mathrm{cn}_\mathcal{G}(T\rightarrow Y)\cup \{T\})\\
+\et = \mathrm{pa}_\mathcal{G}(\mathrm{cn}_\mathcal{G}(T\rightarrow Y))\setminus \mathrm{forb}_\mathcal{G}(T\rightarrow Y)
+\end{align*}
+Note that there is not necessarily a valid adjustment set, if we have more than one variable in the treatment set.
 \item (\concept{Henekel Theorem}) Let $\mathcal{G}$ be a causal DAG containing $T$ and $Y$. Then, $O = O_\mathcal{G}(T\rightarrow Y)$ satisfies the generalised adjustment criterion with respect to $(T,Y)$, and the variance of $\hat{\beta}_{ty\cdot O}$ is minimal over all such sets. Namely, $O$ is the optimal adjustment set.
+\item Let $\mathcal{G}$ be a DAG with vertices $V\cup L$ (where $V\cap L = \varnothing$). Suppose variables $X_L$ are \emph{unobserved}. The \concept{latent projection} of $\mathcal{G}$ onto $V$ is a graph with vertices $V$ and edges
+\begin{itemize}
+	\item  $i\rightarrow j$ if there is a directed path from $i$ to $j$ in $\mathcal{G}$, with any internal nodes in $L$;
+	\item $i\leftrightarrow j$ if there is a trek from $i$ to $j$ that is not a directed path, and all internal vertices are in $L$.
+\end{itemize}
+Note that the resulting graph can be an \concept{acyclic directed mixed graph (ADMG)} due to the presence of bijections, which is beyond the topic of this course.
+\item Given a causal DAG $\mathcal{G}$ and interest in the effect of $T$ on $Y$, the \concept{forbidden projection} is the latent projection of $\mathcal{G}$ onto $V\setminus\mathrm{forb}_\mathcal{G}(T\rightarrow Y)\cup\{T,Y\}$. Namely, we remove causal nodes other than $Y$ and their descendants.
+\item If we apply forbidden projection to a DAG, the result is also a DAG.
+\item Let $\mathcal{G}$ be a DAG and $\tilde{\mathcal{G}}$ its forbidden projection with respect to $(T,Y)$, then
+$$
+O_\mathcal{G}(T\rightarrow Y) = \mathrm{pa}_{\tilde{\mathcal{G}}}(Y)\setminus\{T\}
+$$
 \end{itemize}
 \end{document}
