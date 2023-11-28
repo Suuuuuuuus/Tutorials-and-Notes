@@ -734,7 +734,7 @@ $$
 \Xsum_{x_c}p(x_c)p(y\mid t, x_C) = \Xsum_{x_B}p(x_B)p(y\mid t, x_B)
 $$
 \item Suppose $C$ satisfies the generalised adjustment criterion with respect to $(t,y)$, then it is also a valid adjustment set for that pair.
-\item Let $X_V$ be a multivariate vector of random variables with covariance $\Sigma_{VV}$. We denote the coefficients of $X_y = Y$ on $X_C$ by $\beta_{C_y}$ and $\beta_{t,y\cdot C'}$ where $C\ = C\setminus\{t\}$.
+\item Let $X_V$ be a multivariate vector of random variables with covariance $\Sigma_{VV}$. We denote the coefficients of $X_y = Y$ on $X_C$ by $\beta_{C_y}$ and $\beta_{t,y\cdot C'}$ where $C' = C\setminus\{t\}$.
 \item $X_V$ has a distribution Markov with respect to $\mathcal{G}$ and multivariate Gaussian iff
 $$
 X_i = \Xsum_{w\in\mathrm{pa}(i)}b_{iw}X_w + \epsilon_i \qquad \epsilon_i\sim N(0, \sigma_i\f), \; \mathrm{iid}
@@ -768,5 +768,12 @@ where $\mathcal{T}_{ij}$ is the set of treks from $i$ to $j$. This is known as t
 $$
 \sqrt{n}(\tilde{\beta}_{C_y}-\beta_{C_y}) \cid N_q(0, (\Sigma_{CC})^{-1}\Sigma_{yy\cdot C})
 $$ 
+\item Suppose $C,D\subseteq V$ are both valid adjustment sets for $(T,Y)$, and let $C' = C\setminus D$ and $D' = D\setminus C$. Then, if $y\perp_d D'\mid C\cup\{t\}$ and $t\perp_d C'\mid D$, we have
+$$
+	\dfrac{\sigma_{yy\cdot tC}}{\sigma_{tt\cdot C}}\leq\dfrac{\sigma_{yy\cdot tD}}{\sigma_{tt\cdot D}}
+$$
+For good precision on regression, we want the residual variance in $Y$ to be smaller and residual variance in $T$ to be larger.
+\item The \emph{optimal adjustment set} is $O_\mathcal{G}(T\rightarrow Y) = \mathrm{pa}_\mathcal{G}(\mathrm{cn}_\mathcal{G}(T\rightarrow Y))\setminus (\mathrm{cn}_\mathcal{G}(T\rightarrow Y)\cup \{T\})$.
+\item (\concept{Henekel Theorem}) Let $\mathcal{G}$ be a causal DAG containing $T$ and $Y$. Then, $O = O_\mathcal{G}(T\rightarrow Y)$ satisfies the generalised adjustment criterion with respect to $(T,Y)$, and the variance of $\hat{\beta}_{ty\cdot O}$ is minimal over all such sets. Namely, $O$ is the optimal adjustment set.
 \end{itemize}
 \end{document}
