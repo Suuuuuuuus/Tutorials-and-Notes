@@ -10,4 +10,4 @@ graphical_models/2023MT*
 */*/*.out
 */*/*.tex.bak
 *.gz
-.DS_Store
+**/*.DS_Store
