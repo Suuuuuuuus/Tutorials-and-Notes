@@ -1,4 +1,7 @@
 graphical_models/2023MT*
+**/*.blg
+**/*.bbl
+**/*.bib.bak
 **/*.aux
 **/*.log
 **/*.out
