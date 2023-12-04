@@ -155,7 +155,6 @@ frame=single,                         % Any extra options here
 showstringspaces=false
 }}
 
-
 % Python environment
 \lstnewenvironment{python}[1][]
 {
@@ -185,7 +184,6 @@ stringstyle=\color{deepgreen},
 frame=single,                         % Any extra options here
 showstringspaces=false
 }}
-
 
 % Python environment
 \lstnewenvironment{bash}[1][]
@@ -219,58 +217,15 @@ showstringspaces=false
 \newcommand{\xz}{(\qquad)}
 \newcommand{\tk}{\underline{\qquad\qquad}}
 %高等数学：
-\renewcommand{\d}{\,\mathrm{d}}
-\newcommand{\dt}{\,\mathrm{d}t}
-\newcommand{\dr}{\,\mathrm{d}r}
-\newcommand{\du}{\,\mathrm{d}u}
-\newcommand{\dv}{\,\mathrm{d}v}
-\newcommand{\dx}{\,\mathrm{d}x}
-\newcommand{\dy}{\,\mathrm{d}y}
-\newcommand{\dz}{\,\mathrm{d}z}
-\newcommand{\df}{\,\mathrm{d}f}
 \newcommand{\bigmid}{\, \bigg | \,} %用于集合中有分数的情况
 \newcommand\matharr{\tikz[baseline=-0.4ex]\draw[-stealth] (0,0) -- + (3mm,0);} %用于下标中的右箭头
 \newcommand\textarr{\; \tikz[baseline=-0.55ex]\draw[-stealth] (0,0) -- + (4mm,0);} %用于文本中的右箭头，注意用占位符调整前后间距
-\newcommand{\limite}[2]{\ensuremath{\lim\limits_{#1\matharr #2}}} %#1趋向于#2
-\newcommand{\dlimite}[4]{\ensuremath{\displaystyle{\lim_{\substack{ \phantom{l}#1\matharr #2\phantom{l} \\ #3\matharr #4}}}}} %#重极限：1趋向于#2，#3趋向于#4，phantom{l}用来占位
-\newcommand{\neighbr}{\ensuremath{\mathring{U}(x_0\comma \delta)}} %去心邻域U
-\newcommand{\neighbor}{\ensuremath{U(x_0\comma \delta)}} %邻域U
-\newcommand{\tikzrm}[1]{
-	\fill[white] #1 circle(1.5pt);
-	\draw #1 circle(1.5pt);
-}
-\newcommand{\derivee}[4]{
-	\ffrac{\,\mathrm{d}^{#1}#2}{\,\mathrm{d}#3^{#4}}
-}
-\newcommand{\intscript}[2]{\biggl.\biggr|_{\, #2}^{\, #1}} %求出原函数以后代入的积分上下限
 \newcommand{\concept}[1]{\textcolor{magenta}{#1}}
 \newcommand{\drug}[1]{\textcolor{orange}{#1}}
+\newcommand{\imp}[1]{\textcolor{red}{#1}}
+\newcommand{\teal}[1]{\textcolor{teal}{#1}}
 \renewcommand{\emph}[1]{\textcolor{blue}{#1}}
-\newcommand{\dint}[2]{\ensuremath{\displaystyle{\int_{#2}^{#1}}}}
-\newcommand{\diint}[4]{\ensuremath{\displaystyle{\int_{#2}^{#1}\int_{#4}^{#3}}}}
-\newcommand{\bint}{\mathlarger{\int}} %用于将幂次上的积分号放大
-\newcommand{\exiint}{\ensuremath{\!\!\!}} %用于缩短累次积分中积分号的距离
-\newcommand{\fxy}{\ensuremath{f(x\comma y)}}
-\newcommand{\xoyo}{\ensuremath{(x_0\comma y_0)}}
-\newcommand{\series}{\ensuremath{\dps{\Xsum_{n=1}^\infty}}} %级数
-\newcommand{\serieso}{\ensuremath{\dps{\Xsum_{n=0}^\infty}}} %0开始的级数
 %线性代数：
-\newcommand{\pA}{\ensuremath{\pmb{A}}}
-\newcommand{\pB}{\ensuremath{\pmb{B}}}
-\newcommand{\pC}{\ensuremath{\pmb{C}}}
-\newcommand{\pO}{\ensuremath{\pmb{O}}}
-\newcommand{\pP}{\ensuremath{\pmb{P}}}
-\newcommand{\pQ}{\ensuremath{\pmb{Q}}}
-\newcommand{\pE}{\ensuremath{\pmb{E}}}
-\newcommand{\px}{\ensuremath{\pmb{x}}}
-\newcommand{\pX}{\ensuremath{\pmb{X}}}
-\newcommand{\pR}{\ensuremath{\pmb{R}}}
-\newcommand{\pZ}{\ensuremath{\pmb{Z}}}
-\newcommand{\pal}{\ensuremath{\pmb{\alpha}}}
-\newcommand{\pbe}{\ensuremath{\pmb{\beta}}}
-\newcommand{\pxi}{\ensuremath{\pmb{\xi}}}
-\newcommand{\pet}{\ensuremath{\pmb{\eta}}}
-\renewcommand{\t}{\ensuremath{^\mathrm{T}}}
 \newcommand\laarr{\qquad\tikz\draw[-stealth] (0,0) -- + (7mm,0);\qquad} %用于矩阵中的初等变换
 \newcommand{\laarrt}[1]{\qquad\tikz\draw[-stealth] (0,0) -- (4mm,0) node[above]{#1}--+ (4mm,0);\qquad} %初等变换上带字
 %概率：
@@ -286,41 +241,117 @@ showstringspaces=false
 \end{center}
 除特殊说明，本文采用以下简写：
 \begin{itemize}
+\item alloBMT: 异基因骨髓移植
+\item ANA: 抗细胞核抗体
 \item BT: 体温
 \item BP: 血压
+\item HCT: 造血干细胞移植
+\item RA: 类风湿因子
 \item RR: 呼吸频率
 \item HR: 心率
 \item $P_\mathrm{a}(\mathrm{CO}_2)$: 动脉血二氧化碳分压
 \item WBC: 全血细胞计数
 \end{itemize}
+
 \newpage
-\textbf{Eponymous Diseases}
+
+\noindent\textbf{名词解释}
+\begin{itemize}
+\item \concept{滴度}：是一种浓度的表示方式。将一系列的稀释标准溶液逐滴加入被分析溶液，由特定指标的变化来确定滴定反应终点，仍能得到阳性结果的最大稀释因数就是滴度，常用比例来表示，如$1:256$.
+\item alloBMT和HCT移植的主要成分都是造血干细胞，只是采集方法不同。alloBMT直接做骨髓穿刺从骨髓中采集骨髓混合液（其中包含造血干细胞），而HCT直接通过血细胞分离机从外周血中采集造血干细胞。实际操作中一般都采用HCT而非alloBMT，只是习惯性混用骨髓移植和造血干细胞移植的说法。
+\end{itemize}
+\newpage
+
+\noindent\textbf{Eponymous Diseases}
 \begin{itemize}
 \item \concept{Churg-Strauss综合征（嗜酸性肉芽肿性多血管炎, Eosinophilic Granulomatosis with Polyangiitis, EGPA）}:
 \begin{itemize}
 	\item 表现：变态反应性鼻炎、哮喘、\emph{外周血嗜酸性粒细胞显著增多}。
-	\item 药物：\drug{美泊利珠单抗}。
+	\item 治疗：\drug{美泊利珠单抗}。
 \end{itemize}
 \item \concept{木村病（Kimura's Disease）}:
 \begin{itemize}
 	\item 表现：头颈部皮下组织病变、\emph{嗜酸性粒细胞和IgE增多}。
-	\item 诊断标准：开放式活检。
-	\item 药物：\drug{西替利嗪}，\drug{静脉注射免疫球蛋白 (IVIG)}，\drug{他克莫司}（未完全证实）。
+	\item 诊断：开放式活检。
+	\item 治疗：\drug{西替利嗪/静脉注射免疫球蛋白 (IVIG)/他克莫司}（未完全证实）。
+\end{itemize}
+\item \concept{桥本氏甲状腺炎（Hashimoto's Thyroiditis）}:
+\begin{itemize}
+	\item 甲状腺被一系列细胞或抗体接到免疫过程攻击导致的\imp{自体免疫性疾病}，最终可能会发展成为甲减。
+	\item 诊断：检测血清中的\emph{甲状腺过氧化物酶抗体水平上升}。
+	\item 治疗：\drug{左旋甲状腺素/三碘化甲腺氨酸/脱水甲状腺提取物}。
+\end{itemize}
+\item \concept{古德巴斯捷氏综合征（Goodpasture Syndrome, GPS）}:
+\begin{itemize}
+	\item \concept{抗肾小球基底膜（anti-Glomerular Basement Membrane, anti-GBM）}抗体攻击肺和肾脏，导致从肺及肾功能衰竭出血。
+	\item 诊断：活体组织切片检测受影响的组织。
+	\item 治疗：\drug{血浆分离置换法}以滤出anti-GBM，并辅以如\drug{环磷酰胺/利妥昔单抗}等\emph{免疫抑制剂}治疗。
+\end{itemize}
+\item \concept{干燥综合征（Sj\"ogren's Syndrome）}:
+\begin{itemize}
+	\item 主要表现是干燥症状，是一种\imp{自身免疫疾病}。
+	\item 诊断：一般结合多种检测手段，如血液检查测量血液中ANA及RA等抗体水平，泪腺功能测试和唾液腺功能测试等。
+	\item 治疗：通常对症治疗。如\drug{环孢素}治疗慢性眼干炎症，\drug{西维美林/匹罗卡品}刺激唾液分泌，\drug{尼达尼布}治疗干燥症并发的肺纤维化等。
+\end{itemize}
+\item \concept{过敏性紫斑症（Henoch-Sch\"onlein Purpura）}:
+\begin{itemize}
+	\item 过敏原刺激机体产生抗体；过敏原\uline{再次}进入体内时与IgA等抗体结合形成\emph{免疫复合物}沉积于皮肤、消化道、关节腔、肾脏等全身多部位的小血管处，继而激活\emph{补体}，引起血管炎症反应，导致血管脆性和通透性增加。
+	\item 诊断：临床表现具有特征性，也可完成皮肤活检或肾活检以确定诊断。
+	\item 治疗：对症治疗。
+\end{itemize}
+\item \concept{X性连锁无丙种球蛋白血症（Bruton-Gitlin Syndrome, X-linked agammaglobulinemia, XLA）}:
+\begin{itemize}
+	\item 病人\concept{Bruton's Tyrosine Kinase (BTK)}缺陷导致无法从前B细胞传导细胞信号以继续发育成熟，导致血循环中B细胞减少，骨髓中无浆细胞。\imp{伴X隐性遗传}。
+	\item 诊断：血液检测中发现\emph{B细胞缺失}且五类免疫球蛋白均表达量较少；可用\concept{Western印迹法}检测是否BTK被表达，但价格昂贵。
+	\item 治疗：（治标）免疫球蛋白替代疗法（\drug{IGIM/IVIG})；（治本）\drug{alloBMT}。
+\end{itemize}
+\item \concept{迪乔治综合征（DiGeorge Syndrome）}:
+\begin{itemize}
+	\item 主要原因是染色体22q11区域缺失，由胎儿发育早期突变所导致。
+	\item 诊断：\emph{T细胞功能异常}，胸腺缺如，甲状旁腺也缺如或发育不全。
+	\item 治疗：无。
+\end{itemize}
+\item \concept{Wiskott-Aldrich氏症候群（Wiskott-Aldrich Syndrome）}:
+\begin{itemize}
+	\item 主要原因是X染色体p11.2-11.23的WAS基因突变，导致血小板和免疫细胞功能异常。\imp{伴X隐性遗传}。
+	\item 诊断：\emph{血小板低下或形状小}，基因检测（WAS基因）。
+	\item 治疗：\drug{HCT}或对症治疗。
+\end{itemize}
+\item \concept{白细胞异常色素减退综合征（契东综合征，Che\'diak-Higashi Syndrome）}:
+\begin{itemize}
+	\item 主要原因是染色体1q42-43上的CHS1基因突变，巨噬细胞内出现巨大的溶酶体，不能与吞噬小体融合为吞噬溶酶体，导致胞内杀菌功能受损，且巨噬细胞胞膜流动性和成帽能力也有缺陷。\imp{常染色体隐性遗传}。
+	\item 诊断：骨髓穿刺。
+	\item \drug{alloBMT}。
 \end{itemize}
 \end{itemize}
+
+\newpage
+
 \textbf{Other Diseases}
 \begin{itemize}
 \item \concept{全身炎症反应综合征（Systemic Inflammatory Response Syndrome, SIRS）}:
 \begin{itemize}
 	\item 免疫细胞在外敌侵入时大量向血液中分泌炎症性细胞因子或脂质介质，由此导致的全身性炎症反应。
-	\item 诊断标准：
+	\item 诊断：
 	\begin{itemize}
-		\item BT $<$ 36 $\degree$C $\mid$ BT $>$ 38 $\degree$C
-		\item HR $>$ 90 /min
-		\item RR $>$ 20 /min $\mid$ $P_\mathrm{a}(\mathrm{CO}_2)$ $<$32 mmHg
-		\item WBC $<$ 4e9 /L $\mid$ WBC $>$ 12e9 /L $\mid$ 带状细胞（未成熟中性粒细胞）含量达到10\%
+		\item BT $<$ 36 $\degree$C $\mid$ BT $>$ 38 $\degree$C.
+		\item HR $>$ 90 /min.
+		\item RR $>$ 20 /min $\mid$ $P_\mathrm{a}(\mathrm{CO}_2)$ $<$32 mmHg.
+		\item WBC $<$ 4e9 /L $\mid$ WBC $>$ 12e9 /L $\mid$ 带状细胞（未成熟中性粒细胞）含量达到10\%.
 	\end{itemize}
 \end{itemize}
+\item \concept{原发性胆汁性胆管炎（Primary Biliary Cholangitis, PBC）}:
+\begin{itemize}
+	\item 一种\imp{自身免疫疾病}，由于肝脏内小胆管缓慢、进行性破坏，导致胆汁及其他毒素在肝脏中积聚（胆汁淤积）造成的。对肝组织的进一步缓慢损伤可导致瘢痕形成、纤维化，并最终导致肝硬化。大多数患者拥有针对丙酮酸脱氢酶复合物（PDC-E2）的抗线粒体抗体（AMA）。
+	\item 诊断：肝功能异常，主要是$\gamma-$谷酰胺转肽酶（GGT）或碱性磷酸酶升高；也可检测PBC的特征性血清学标志物AMA。
+\end{itemize}
+\item \concept{烟雾病（Moyamoya Disease）}:
+\begin{itemize}
+	\item 以双侧颈内动脉末端及大脑前动脉、大脑中动脉起始部慢性进行性狭窄或闭塞为特征，并继发颅底异常血管网形成的一种脑血管疾病。
+	\item 诊断：脑血管造影及其他影像学检查。
+	\item 治疗：\drug{颅内外血管重建手术}。
+\end{itemize}
 \item \concept{结节病（Sarcoidosis）}：发炎细胞不正常聚集形成肿块（肉芽肿）的疾病。
+\item \concept{混合性结缔组织病（Mixed Connective Tissue Disease, MCTD）}：同时或不同时具有SLE，多发性肌炎，硬皮病，类风湿关节炎等疾病的混合表现。通常\emph{血清补体C1q含量显著降低且抗U$_1$RNP抗体高滴度阳性}。
 \end{itemize}
 \end{document}
