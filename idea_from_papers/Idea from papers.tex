@@ -1,5 +1,5 @@
 \documentclass[UTF8]{book}
-\usepackage{ctex}
+%\usepackage{ctex}
 \usepackage{amsmath}
 \usepackage{bm}
 \usepackage{makeidx}
@@ -267,7 +267,7 @@ showstringspaces=false
 \newcommand{\cip}{\tikz[baseline=-0.55ex]\draw[-stealth] (0,0) -- (2mm,0) node[above]{$\;\;P$}--+ (4mm,0);\;} %依概率收敛
 \newcommand{\seriesn}{\ensuremath{\dps{\Xsum_{i=1}^n}}} %1开始到n的连续求和
 \begin{document}
-\kaishu
+%\kaishu
 \begin{center}
 \Large{Different Ideas from Papers}
 \end{center}
@@ -281,6 +281,17 @@ showstringspaces=false
 \begin{itemize}
 	\item GWAS only works well on common genetic variants\cite{manolio2009finding}.
 	\item Candidate genes may depend on the environment in which the study is conducted\cite{thomas2010gene}.
+\end{itemize}
+\end{itemize}
+\textbf{lcWGS}
+\begin{itemize}
+\item lcWGS and GWAS\cite{rubinacci2021efficient}:
+\begin{itemize}
+	\item First GWAS using lcWGS (1.7×) identified two loci associated with major depressive disorder\cite{converge2015sparse}. 
+	\item Another study showed that 1× WGS was able to find signals missed by standard imputation of SNP arrays\cite{gilly2016very}. 
+	\item Recently, a more systematic examination of the power of GWAS based on low-coverage sequencing suggested that 1× sequencing allows discovering up to twice as many associations as standard SNP array imputation\cite{gilly2019very}.
+	\item GLIMPSE used correlation, genotype discordance and non-reference discordance to measure imputation accuracy.
+	\item GLIMPSE can be improved such that it does not employ any reference panel (e.g., targeted panel can have larger sample size of an existing reference panel of that population), data management, and genotype likelihood calculation.
 \end{itemize}
 \end{itemize}
 \bibliographystyle{plain} 
