@@ -134,7 +134,6 @@ linkcolor=black
 \definecolor{deepblue}{rgb}{0,0,0.5}
 \definecolor{deepred}{rgb}{0.6,0,0}
 \definecolor{deepgreen}{rgb}{0,0.5,0}
-
 \usepackage{listings}
 
 % Python style for highlighting
@@ -238,6 +237,7 @@ showstringspaces=false
 }
 \newcommand{\intscript}[2]{\biggl.\biggr|_{\, #2}^{\, #1}} %求出原函数以后代入的积分上下限
 \newcommand{\concept}[1]{\textcolor{magenta}{#1}}
+\newcommand{\highlight}[1]{\textcolor{red}{#1}}
 \renewcommand{\emph}[1]{\textcolor{blue}{#1}}
 \newcommand{\dint}[2]{\ensuremath{\displaystyle{\int_{#2}^{#1}}}}
 \newcommand{\diint}[4]{\ensuremath{\displaystyle{\int_{#2}^{#1}\int_{#4}^{#3}}}}
@@ -309,4 +309,60 @@ and $X=\Xsum_{i=1}^NG_{ij}$.
 \item The \textcolor{magenta}{SNPTEST info measure} is similar to the IMPUTE info measure when assuming an additive model (but not dominant model) and thus omitted here.
 \end{itemize}
 The MACH, BEAGLE and IMPUTE measures seem to be highly correlated with BEAGLE $R\f$ systemically reporting lower values and undefined at $3\%$ of the SNPs and MACH $r\f$ often exceeds 1. 
+\newpage
+\begin{center}
+\Large{Algorithms and Technicals}
+\end{center}
+\begin{itemize}
+\item The \concept{Metropolis-Hastings Algorithm}:
+\begin{itemize}
+	\item Suppose we want to sample a target distribution where we don't know its normalising constant, which we denote as $p(\theta)$, but we have a known distribution $g(\theta)$ such that it satisfies $p(\theta)\propto g(\theta)$. The Metropolis-Hastings algorithm is as follows:
+\begin{enumerate}
+	\item Select initial value $\theta_0$.
+	\item For $i=1,\cdots,m$, repeat:
+	\begin{enumerate}
+		\item Draw candidate $\theta^*\sim q(\theta^*\mid\theta_{i-1})$.
+		\item Calculate $\alpha$ with
+		$$
+			\alpha = \dfrac{g(\theta^*)/q(\theta^*\mid\theta_{i-1})}{g(\theta_{i-1})/q(\theta_{i-1}\mid\theta^*)} = \dfrac{g(\theta^*)q(\theta_{i-1}\mid \theta^*)}{g(\theta_{i-1})q(\theta^*\mid\theta_{i-1})}
+		$$
+		\item Determine whether to retain the sample $\theta^*$ based on $\alpha$:
+		\begin{itemize}
+			\item If \emph{$\alpha\geq 1$}, \highlight{accept} $\theta^*$ and set $\theta_i\leftarrow\theta^*$;
+			\item If \emph{$0<\alpha<1$}:
+			\begin{itemize}
+				\item \highlight{Accept} $\theta^*$ and set $\theta_i\leftarrow\theta^*$ with probability $\alpha$;
+				\item \highlight{Reject} $\theta^*$ and set $\theta_i\leftarrow\theta_{i-1}$ with probability $1-\alpha$.
+			\end{itemize}
+		\end{itemize}
+\end{enumerate}		
+\end{enumerate}
+	\item This algorithm is a valid Markov chain. One can pick $q$ such that:
+	\begin{itemize}
+		\item $q$ does not depend on the previous draw $\theta_{i-1}$, in this case we need to have $q$ is similar to $p$.
+		\item $q$ depends on the previous draw, where we have a \concept{random walk Metropolis-Hastings}.
+	\end{itemize}
+	\item If we $q$ is normal, we can increase its standard deviation for decreasing acceptance rate. Targeted acceptance rate can be 23\%$-50\%$.
+\end{itemize}
+\item \concept{Gibbs sampling} is to sample from an unknown distribution if multiple parameters are unknown. When we sample one of the parameters, simply treat the other as a known constant (due to the chain rule of conditional probability).
+\begin{itemize}
+	\item Let's assume the unknown distribution is $p(\theta,\varphi\mid y)$ but we have $g(\theta,\varphi)$ that satisfies $p(\theta,\varphi\mid y)\propto g(\theta,\varphi)$. The Gibbs sampler is as follows:
+\begin{enumerate}
+	\item Select initial value $\theta_0$ and $\varphi_0$.
+	\item For $i=1,\cdots,m$, repeat the following as one Gibbs cycle:
+	\begin{enumerate}
+		\item Using $\varphi_{i-1}$ to draw $\theta_i\sim p(\theta\mid\varphi_{i-1}, y)$.
+		\item Using $\theta_{i}$ to draw $\varphi_i\sim p(\varphi\mid\theta_{i}, y)$.
+		\item Update $(\theta_i,\varphi_i)$ according to the Metropolis-Hastings algorithm.
+	\end{enumerate}		
+\end{enumerate}
+\end{itemize}
+\item Autocorrelation:
+\begin{itemize}
+	\item Autocorrelation is an important structure to inspect in order to determine the validity of a MCMC simulation. If autocorrelation is high for large number of lags (one can inspect the autocorrelation plot), it probably indicates that the simulation hasn't converged to a stationary distribution, and we need to increase the number of samples drawn from the chain or modify model hyperparameters.
+	\item Autocorrelation is also important in calculating the effective sample size of our MCMC. The \concept{effective sample size} is how many independent samples from the stationary distribution you would have to draw to have equivalent information in our MCMC. It is essentially the sample size we choose for our Monte Carlo estimation.
+	\item Broaderly speaking, an effective sample size is often concerned in two scenarios, that is, when our data is autocorrelated or weighted. An intuitive example would be if our $X_1=\cdots=X_n$ and thus perfectly autocorrelated, we basically just have one sample; or if our samples are weighted such that $w_1=1$ and $w_2=\cdots=w_n=0$, the effective sample size is 1 as well. Mathematically, it is defined as the number of i.i.d. samples required to achieve the same level of variance.
+	\item If one only cares the mean of the posterior, an effective sample size of the scale 100 to 1000 is good enough; if one seeks to create a confidence interval, then several thousands of effective samples are required.
+\end{itemize}
+\end{itemize}
 \end{document}
