@@ -1,6 +1,8 @@
 \documentclass[UTF8]{book}
 %\usepackage{ctex}
 \usepackage{amsmath}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
 \usepackage{bm}
 \usepackage{makeidx}
 \usepackage{enumitem}
@@ -363,6 +365,80 @@ The MACH, BEAGLE and IMPUTE measures seem to be highly correlated with BEAGLE $R
 	\item Autocorrelation is also important in calculating the effective sample size of our MCMC. The \concept{effective sample size} is how many independent samples from the stationary distribution you would have to draw to have equivalent information in our MCMC. It is essentially the sample size we choose for our Monte Carlo estimation.
 	\item Broaderly speaking, an effective sample size is often concerned in two scenarios, that is, when our data is autocorrelated or weighted. An intuitive example would be if our $X_1=\cdots=X_n$ and thus perfectly autocorrelated, we basically just have one sample; or if our samples are weighted such that $w_1=1$ and $w_2=\cdots=w_n=0$, the effective sample size is 1 as well. Mathematically, it is defined as the number of i.i.d. samples required to achieve the same level of variance.
 	\item If one only cares the mean of the posterior, an effective sample size of the scale 100 to 1000 is good enough; if one seeks to create a confidence interval, then several thousands of effective samples are required.
+\end{itemize}
+\item \concept{Hidden Markov Model}:
+\begin{itemize}
+	\item Let us denote the observation sequence up to time $T$ as $O=\{O_1,O_2,\cdots,O_T\}$. An HMM consists of 5 components $N,M,A,B,$ and $\pi$:
+	\begin{itemize}
+		\item $N$ is the number of all possible "hidden" states at any time $t$.
+		\item $M$ is the number of all observable states emitted from the hidden states at any time $t$.
+		\item $A$ is the transition matrix for the hidden states.
+		\item $B$ is the emission matrix for observing the observables from the hidden states, varied according to states.
+		\item $\pi$ is the initial probability distribution of the hidden states at the starting point.
+	\end{itemize}
+	\item Three key HMM problems are posed here:
+	\begin{enumerate}
+		\item What is the probability that a model generated a sequence of observations $O = \{O_1,O_2,\cdots,O_T\}$ given the input parameters $\lambda = (A,B,\pi)$? Namely we want to calculate $P(O\mid\lambda)$.
+		\item[$\Rightarrow$] A naive enumerating way of calculating the probability could be
+		\begin{align*}
+			P(O\mid\lambda) \et = \Xsum_{Q}P(O\mid Q,\lambda)P(Q\mid\lambda)\\
+			\et \sim \mathcal{O}(TN^T)
+		\end{align*}
+		But this is computationally prohibitive. Instead, we could use the \concept{forward function $\alpha_t(i)$} where
+		$$
+		\alpha_t(i) = P(O_1,\cdots,O_t,q_t=S_i\mid\lambda)		
+		$$
+		With dynamic programming, we could solve this inductively:
+		\begin{align*}
+			\alpha_1(i) \et = \pi_i b_i (O_1)\\
+			\alpha_{t+1}(j) \et = \left[\Xsum_{i=1}^N\alpha_t(i)a_{ij}\right]b_j(O_{t+1})\\
+			P(O\mid\lambda) \et = \Xsum_{i=1}^N\alpha_T(i)\\
+			\et \sim \mathcal{O}(N\f T)
+		\end{align*}
+		We also introduce the \concept{backward function $\beta_t(i)$} where
+		$$
+					\beta_t(i) = P(O_{t+1},\cdots,O_T\mid q_t=S_i,\lambda)		
+		$$
+		with the following induction:
+		\begin{align*}
+			\beta_T(i) \et = 1\\
+			\beta_t(i) \et = \Xsum_{j=1}^N a_{ij}b_j(O_{t+1})\beta_{t+1}(j)
+		\end{align*}
+		\item What sequence $Q = \{q_1,q_2,\cdots,q_T\}$ of states best explains a sequence of observations $O = \{O_1,O_2,\cdots,O_T\}$?
+		\item[$\Rightarrow$] Denote $\gamma_t(i)$ as the probability of being in state $S_i$ at time $t$, we can easily calculate this as
+		\begin{align*}
+			\gamma_t(i) \et = P(q_t = S_i\mid O,\lambda)	\\
+			\et = \dfrac{\alpha_t(i)\beta_t(i)}{P(O\mid\lambda)} = \dfrac{\alpha_t(i)\beta_t(i)}{\Xsum_{j=1}^N\alpha_t(j)\beta_t(j)}
+		\end{align*}
+		An intuitive thought about $\gamma$ would be dividing the probability of getting the full sequence of observation up to time $T$ given the current state over the total probability of observing that sequence. It is easy to observe that $\Xsum_{i=1}^N\gamma_t(i) = 1$.\\
+		Now, it becomes natural to consider at each $t\leq T$, what is the maximum likely state the observable is in. However, considering this sequential maximum does not necessarily make sense, at they may not form a valid path (path with non-zero probability). Hence, the better way of considering this is to find \emph{the most likely state sequence}, namely $P(Q\mid O,\lambda)$.\\
+		The resulting algorithm that solves this problem is called the \concept{Viterbi algorithm}. Denote
+		$$
+		\delta_t(i) = \max_{q_1,\cdots,q_{t-1}}P(\{q_1,\cdots,q_{t-1},q_t=i\},\{O_1,\cdots,O_t\}\mid\lambda)
+		$$
+		as the path with the highest probability that accounts for the first $t$ observations and ends at state $S_i$. We use $\psi_t(i)$ to track the state at $t$ that maximises $\delta_t(i)$. The Viterbi algorithm can then be formulated as 
+		\begin{alignat*}{3}
+			\delta_1(i) &= \pi_i b_i (O_1) &\psi_1(i) & = 0 \\
+			\delta_t(j) & = \max_{1\leq i\leq N}[\delta_{t-1}(i)a_{ij}]\cdot b_j(O_t)  \qquad & \psi_t(j) & = \argmax_{1\leq i\leq N}[\delta_{t-1}(i)a_{ij}]\\
+			P^* \et = \max_{1\leq i\leq N}[\delta_T(i)] \et q_T^* \et = \argmax_{1\leq i\leq N}[\delta_T(i)]
+		\end{alignat*}
+		And we have $q_t^*=\psi_{t+1}(q^*_{t+1})$ where here the $*$ is to denote the optimal variables.
+		\item Given a set of observation sequences $O = \{O_1,O_2,\cdots,O_T\}$, how do we learn the model parameters $\lambda = (A,B,\pi)$ that would generate them?
+		\item[$\Rightarrow$]	This can be done with the \concept{Baum-Welch Algorithm}. It is an \concept{expectation-maximisation (EM)} method (a.k.a., gradient "descent"), iterative, and converges to a \emph{local} optimum. \\
+		Denote $\xi_t(i,j)$ as
+		\begin{align*}
+		\xi_t(i,j) \et = P(q_t = S_i, q_{t+1} = S_j\mid O,\lambda)\\
+		\et = \dfrac{\alpha_t(i)a_{ij}b_j(O_{t+1})\beta_{t+1}(j)}{P(O\mid\lambda)}\\
+		\et = \dfrac{\alpha_t(i)a_{ij}b_j(O_{t+1})\beta_{t+1}(j)}{\Xsum_{i=1}^N\Xsum_{j=1}^N\alpha_t(i)a_{ij}b_j(O_{t+1})\beta_{t+1}(j)}
+		\end{align*}
+		It is notable that $\gamma_t(i) = \Xsum_{j=1}^N\xi_t(i,j)$. Now, to estimate the parameter, we could use
+		\begin{align*}
+			\hat{\pi} \et = \gamma_1(i)\\
+			\hat{a}_{ij} \et = \dfrac{\Xsum_{t=1}^{T-1}\xi_t(i,j)}{\Xsum_{t=1}^{T-1}\gamma_t(i)}\\
+			\hat{b}_j(k) \et = \dfrac{\Xsum^T_{t=1, \mathrm{\; s.t.\;}O_t=v_k}\gamma_t(i)}{\Xsum_{t=1}^T\gamma_t(i)}
+		\end{align*}
+		We are then able to iteratively update our model parameters $\lambda$ with the previous observations, and update the observations with the new parameters, until we reach a local maximum or minimum (which is the essence of EM).
+	\end{enumerate}
 \end{itemize}
 \end{itemize}
 \end{document}
