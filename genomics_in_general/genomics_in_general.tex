@@ -279,7 +279,9 @@ showstringspaces=false
 \Large{Miscellaneous Genomics Notes}
 \end{center}
 \begin{itemize}
-\item Post-imputation information measure\footnote{\url{http://www.nature.com/articles/nrg2796}.}. Let $G_{ij}\in \{0,1,2\}$ denote the genotype of the $i$th individual at the $j$th SNP in a study cohort of $N$ samples. Let $p_{ijk} = P(G_{ij}=k|H,G)$ be the probability (obtained) from imputation that the genotype at the $j$th SNP of the $i$th individual is $k$. Define the \textcolor{magenta}{expected allele dosage} for the genotype at the $j$th SNP of the $i$th individual be
+\item Post-imputation information measure\footnote{\url{http://www.nature.com/articles/nrg2796}.}:
+\begin{itemize}
+\item Let $G_{ij}\in \{0,1,2\}$ denote the genotype of the $i$th individual at the $j$th SNP in a study cohort of $N$ samples. Let $p_{ijk} = P(G_{ij}=k|H,G)$ be the probability (obtained) from imputation that the genotype at the $j$th SNP of the $i$th individual is $k$. Define the \textcolor{magenta}{expected allele dosage} for the genotype at the $j$th SNP of the $i$th individual be
 $$
 e_{ij} = p_{ij1} + 2p_{ij2}
 $$
@@ -308,9 +310,18 @@ and $X=\Xsum_{i=1}^NG_{ij}$.
 		\end{cases}	
 	$$
 \end{itemize}
-\item The \textcolor{magenta}{SNPTEST info measure} is similar to the IMPUTE info measure when assuming an additive model (but not dominant model) and thus omitted here.
+\item The \textcolor{magenta}{SNPTEST INFO measure}\footnote{\url{https://www.chg.ox.ac.uk/\~gav/snptest/\#info\_measures}.} is similar to the IMPUTE info measure when assuming an additive model (but not dominant model). It reflects the information in imputed genotypes relative to the information if only the allele frequency were known, defined as:
+$$
+\mathrm{INFO} = 1 - \dfrac{1}{N}\Xsum_{i=1}^N\dfrac{\sqrt{\hat{\theta}(1-\hat{\theta})}}{\sqrt{\theta(1-\theta)}}
+$$
+where the numerator $\hat{\theta}$ is the imputed allele frequency and the denominator employs the \concept{estimated allele frequency} of a given SNP across individuals (assuming HWE):
+$$
+\theta = \dfrac{\Xsum_i \mathrm{DS_i}}{2\Xsum_{i,g}P(g_i = g)} \qquad g\in \{0,1\}
+$$
+Note that INFO score equals 1 exhibits perfect imputation, and it could drop below 0.
+\item The MACH, BEAGLE and IMPUTE measures seem to be highly correlated with BEAGLE $R\f$ systemically reporting lower values and undefined at $3\%$ of the SNPs and MACH $r\f$ often exceeds 1. 
 \end{itemize}
-The MACH, BEAGLE and IMPUTE measures seem to be highly correlated with BEAGLE $R\f$ systemically reporting lower values and undefined at $3\%$ of the SNPs and MACH $r\f$ often exceeds 1. 
+\end{itemize}
 \newpage
 \begin{center}
 \Large{Algorithms and Technicals}
